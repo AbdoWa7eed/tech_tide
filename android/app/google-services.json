@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "947646602761",
+    "project_id": "techtide-f60e0",
+    "storage_bucket": "techtide-f60e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947646602761:android:069cc8416d983459b8e2d8",
+        "android_client_info": {
+          "package_name": "com.example.tech_tid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKOCGNcjUCsZKh0BHi4tENyVwTicxdJzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947646602761:android:b885c029a0160150b8e2d8",
+        "android_client_info": {
+          "package_name": "com.example.tech_tide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKOCGNcjUCsZKh0BHi4tENyVwTicxdJzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947646602761:android:f999f725888c695cb8e2d8",
+        "android_client_info": {
+          "package_name": "com.example.techtide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKOCGNcjUCsZKh0BHi4tENyVwTicxdJzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
