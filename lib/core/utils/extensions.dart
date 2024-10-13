@@ -15,6 +15,16 @@ extension NavigationExtension on BuildContext {
   }
 }
 
-extension StringExtension on String {
-  String get translate => this.tr();
+extension StringExtension on String? {
+  String get translate => this?.tr() ?? orEmpty();
+
+  String orEmpty() {
+    return this == null ? '' : this!;
+  }
+}
+
+extension NumExtension on num? {
+  num orZero() {
+    return this == null ? 0 : this!;
+  }
 }

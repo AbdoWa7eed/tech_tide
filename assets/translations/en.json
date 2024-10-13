@@ -1,1 +1,12 @@
-{}
+{
+  "invalidEmail": "The email address is not valid.",
+  "userNotFound": "No user found for that email.",
+  "wrongPassword": "The password is incorrect.",
+  "emailAlreadyInUse": "The email address is already in use.",
+  "authenticationFailed": "Authentication failed. Please try again.",
+  "permissionDenied": "You do not have permission to access this resource.",
+  "documentNotFound": "The requested document was not found.",
+  "documentExists": "A document with the same ID already exists.",
+  "databaseError": "An error occurred while accessing the database.",
+  "unexpectedError": "An unexpected error occurred. Please try again later."
+}
