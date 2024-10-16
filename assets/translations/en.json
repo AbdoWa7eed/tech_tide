@@ -29,5 +29,10 @@
   "signup": "Sign Up",
   "forgotPassword": "Forgot Password",
   "documentExists": "A document with the same ID already exists.",
-  "documentNotFound": "The requested document was not found."
+  "documentNotFound": "The requested document was not found.",
+  "home": "Home",
+  "profile": "Profile",
+  "chats": "Chats",
+  "addPost": "Add Post",
+  "events": "Events"
 }

@@ -10,4 +10,8 @@ abstract class ServiceLocator {
     _getIt.registerLazySingleton<AppPreferences>(
         () => AppPreferences(sharedPreferences));
   }
+
+  static Future initHome() async {
+    _getIt.registerLazySingleton<LayoutController>(() => LayoutController());
+  }
 }

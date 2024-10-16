@@ -6,11 +6,16 @@ import 'package:tech_tide/core/res/values_manager.dart';
 
 ThemeData get appTheme {
   return ThemeData(
+    splashColor: Colors.transparent,
     scaffoldBackgroundColor: ColorManager.babyBlue,
     fontFamily: FontConstants.fontFamily,
-    colorSchemeSeed: ColorManager.primary,
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: ColorManager.white,
+    ),
+    primaryColor: ColorManager.primaryWith10Opacity,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: ColorManager.primaryWith10Opacity,
+      primary: ColorManager.primary,
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
@@ -35,6 +40,13 @@ ThemeData get appTheme {
       ),
       hintStyle: StylesManager.regular14.copyWith(
         color: ColorManager.gray,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSize.s8),
+        ),
       ),
     ),
   );

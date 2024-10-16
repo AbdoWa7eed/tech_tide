@@ -5,6 +5,7 @@ abstract class ColorManager {
   static const Color black = Color(0xff000000);
   static const Color error = Color(0xffe61f34);
   static const Color primary = Color(0xff378CE7);
+  static const Color primaryWith10Opacity = Color(0x1a378CE7);
   static const Color gray = Color(0xff757575);
   static const Color deepTeal = Color(0xff174270);
   static const Color yellow = Color(0xffFAFF00);

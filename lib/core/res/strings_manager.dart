@@ -20,4 +20,9 @@ abstract class AppStrings {
   static const String passwordHint = 'passwordHint';
   static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordHint = 'confirmPasswordHint';
+  static const String home = 'home';
+  static const String profile = 'profile';
+  static const String chats = 'chats';
+  static const String addPost = 'addPost';
+  static const String events = 'events';
 }
