@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/routes/routes_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/custom_wide_button.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/already_have_account_button.dart';
@@ -41,7 +43,9 @@ class SignupViewBody extends StatelessWidget {
         const SizedBox(height: AppSize.s16),
         CustomWideButton(
           buttonText: AppStrings.signup.translate,
-          onPressed: () {},
+          onPressed: () {
+            context.pushReplacement(Routes.homeRoute);
+          },
         ),
         const SizedBox(height: AppSize.s12),
         const AlreadyHaveAccountButton(),
