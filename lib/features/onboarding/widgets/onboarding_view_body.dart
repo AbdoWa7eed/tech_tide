@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
-import 'package:tech_tide/core/routes/routes_manager.dart';
-import 'package:tech_tide/core/widgets/fade_transition.dart';
+import 'package:tech_tide/core/res/values_manager.dart';
 
-class SplashViewBody extends StatelessWidget {
-  const SplashViewBody({super.key});
+class OnboardingViewBody extends StatelessWidget {
+  const OnboardingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Stack(
-      alignment: AlignmentDirectional.center,
       children: [
         const Image(
           image: AssetImage(
@@ -22,8 +20,10 @@ class SplashViewBody extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
         ),
-        CustomFadeTransition(
-          onDone: () => _goNext(context),
+        Positioned(
+          top: height * 0.3,
+          left: AppPadding.p20,
+          right: AppPadding.p20,
           child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -41,9 +41,5 @@ class SplashViewBody extends StatelessWidget {
         )
       ],
     );
-  }
-
-  void _goNext(BuildContext context) {
-    context.pushReplacement(Routes.onboardingRoute);
   }
 }

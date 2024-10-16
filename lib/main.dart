@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:tech_tide/app.dart';
 import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/core/utils/local_manager.dart';
-import 'package:tech_tide/features/auth/presentation/views/signup_view.dart';
 
 import 'firebase_options.dart';
 
@@ -22,6 +21,6 @@ void main() async {
     path: LocaleManager.assetsTranslationPath,
     fallbackLocale: LocaleManager.defaultLocale,
     supportedLocales: LocaleManager.locals,
-    child: const SignupView(),
+    child: TechTideApp(),
   ));
 }
