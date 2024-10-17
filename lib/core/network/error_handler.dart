@@ -12,7 +12,7 @@ abstract class ErrorHandler {
     } else if (e is Failure) {
       return e;
     } else {
-      return Failure(message: ErrorMessages.unexpectedError.translate);
+      return Failure(message: e.toString());
     }
   }
 

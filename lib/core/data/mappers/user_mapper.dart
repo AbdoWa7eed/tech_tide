@@ -1,6 +1,6 @@
+import 'package:tech_tide/core/data/models/user/user_response_model.dart';
+import 'package:tech_tide/core/entities/user_entity.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
-import 'package:tech_tide/features/auth/data/models/user_response_model.dart';
-import 'package:tech_tide/features/auth/domain/entities/user_entity.dart';
 
 extension UserMapper on UserResponseModel {
   UserEntity toEntity() {

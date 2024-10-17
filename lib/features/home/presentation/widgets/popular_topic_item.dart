@@ -9,33 +9,36 @@ class PopularTopicItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppSize.s140,
-      width: AppSize.s140,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s20),
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        elevation: AppSize.s2,
-        child: Container(
-          color: color,
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppPadding.p12,
-            vertical: AppPadding.p12,
+    return GestureDetector(
+      onTap: () {},
+      child: SizedBox(
+        height: AppSize.s140,
+        width: AppSize.s140,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSize.s20),
           ),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'C++',
-                style: StylesManager.bold18,
-              ),
-              Text(
-                '10 Posts',
-                style: StylesManager.medium16,
-              )
-            ],
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: AppSize.s2,
+          child: Container(
+            color: color,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppPadding.p12,
+              vertical: AppPadding.p12,
+            ),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'C++',
+                  style: StylesManager.bold18,
+                ),
+                Text(
+                  '10 Posts',
+                  style: StylesManager.medium16,
+                )
+              ],
+            ),
           ),
         ),
       ),
