@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tech_tide/core/data/models/user/user_response_model.dart';
 import 'package:tech_tide/core/network/error_messages.dart';
 import 'package:tech_tide/core/network/failure.dart';
 import 'package:tech_tide/core/network/firebase_constants.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/features/auth/data/models/user_login_request.dart';
 import 'package:tech_tide/features/auth/data/models/user_register_request.dart';
-import 'package:tech_tide/features/auth/data/models/user_response_model.dart';
 
 abstract class AuthDataSource {
   Future<UserResponseModel> login(UserLoginRequest request);
@@ -46,10 +46,15 @@ class AuthDataSourceImpl implements AuthDataSource {
       password: request.password,
     );
 
+    final userId = userCredentials.user?.uid;
     final doc = _firebaseFirestore
         .collection(FirebaseConstants.usersCollection)
-        .doc(userCredentials.user?.uid);
-    await doc.set(request.toJson());
+        .doc(userId);
+    final userData = {
+      ...request.toJson(),
+      FirebaseConstants.userIdField: userId,
+    };
+    await doc.set(userData);
     final user = await doc.get();
 
     return UserResponseModel.fromJson(user.data() ?? {});

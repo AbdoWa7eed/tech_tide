@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:tech_tide/core/entities/user_entity.dart';
 import 'package:tech_tide/features/auth/data/models/user_login_request.dart';
 import 'package:tech_tide/features/auth/data/models/user_register_request.dart';
-import 'package:tech_tide/features/auth/domain/entities/user_entity.dart';
 import 'package:tech_tide/features/auth/domain/repo/auth_repository.dart';
 
 part 'auth_state.dart';
