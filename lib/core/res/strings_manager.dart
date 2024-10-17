@@ -25,4 +25,6 @@ abstract class AppStrings {
   static const String chats = 'chats';
   static const String addPost = 'addPost';
   static const String events = 'events';
+  static const String popularTopics = 'popularTopics';
+  static const String trendingPosts = 'trendingPosts';
 }

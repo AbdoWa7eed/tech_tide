@@ -6,4 +6,6 @@ abstract class AssetsManager {
   static const String addPostIcon = 'assets/images/post.svg';
   static const String chatsIcon = 'assets/images/chats.svg';
   static const String profileIcon = 'assets/images/profile.svg';
+  static const String saveIcon = 'assets/images/save.svg';
+  static const String commentIcon = 'assets/images/comment.svg';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
+import 'package:tech_tide/features/home/presentation/views/home_view.dart';
 import 'package:tech_tide/features/home_layout/presentation/provider/layout_controller.dart';
 
 class HomeLayoutBody extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
           physics: const NeverScrollableScrollPhysics(),
           children: const [
             //Add Home View
-            Placeholder(color: ColorManager.primary),
+            HomeView(),
             //Add Event View
             Placeholder(color: ColorManager.deepTeal),
             //Opens "Add Post" BottomSheet

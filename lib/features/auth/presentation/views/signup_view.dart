@@ -8,17 +8,17 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: size.height,
+          height: height,
           child: Stack(
             children: [
               const HeaderImageWidget(),
               Positioned(
-                top: size.height * 0.26,
+                top: height * 0.26,
                 left: 0,
                 right: 0,
                 bottom: 0,
@@ -31,7 +31,9 @@ class SignupView extends StatelessWidget {
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: AppPadding.p18, horizontal: AppPadding.p20),
+                      vertical: AppPadding.p18,
+                      horizontal: AppPadding.p20,
+                    ),
                     child: SignupViewBody(),
                   ),
                 ),
