@@ -21,4 +21,11 @@ abstract class ColorManager {
       Color(0xff4AA8F8),
     ],
   );
+
+  static const popularTopicsColors = [
+    Color(0xff6164FF),
+    primary,
+    Color(0xff67C6E3),
+  ];
+
 }

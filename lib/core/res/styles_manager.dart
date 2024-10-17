@@ -3,6 +3,12 @@ import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/font_manager.dart';
 
 abstract class StylesManager {
+  static const TextStyle regular12 = TextStyle(
+    fontSize: FontSize.s12,
+    color: ColorManager.gray,
+    fontWeight: FontWeightManager.regular,
+  );
+
   static const TextStyle regular14 = TextStyle(
     fontSize: FontSize.s14,
     color: ColorManager.black,
@@ -23,7 +29,7 @@ abstract class StylesManager {
 
   static const TextStyle medium16 = TextStyle(
     fontSize: FontSize.s16,
-    color: ColorManager.black,
+    color: ColorManager.white,
     fontWeight: FontWeightManager.medium,
   );
 
@@ -43,6 +49,18 @@ abstract class StylesManager {
     fontSize: FontSize.s18,
     color: ColorManager.primary,
     fontWeight: FontWeightManager.semiBold,
+  );
+
+  static const TextStyle semiBold30 = TextStyle(
+    fontSize: FontSize.s30,
+    color: ColorManager.white,
+    fontWeight: FontWeightManager.semiBold,
+  );
+
+  static const TextStyle bold18 = TextStyle(
+    fontSize: FontSize.s18,
+    color: ColorManager.white,
+    fontWeight: FontWeightManager.bold,
   );
 
   static const TextStyle bold32 = TextStyle(

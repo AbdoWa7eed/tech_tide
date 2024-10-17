@@ -34,5 +34,7 @@
   "profile": "Profile",
   "chats": "Chats",
   "addPost": "Add Post",
-  "events": "Events"
+  "events": "Events",
+  "trendingPosts": "Trending Posts",
+  "popularTopics": "Popular Topics"
 }

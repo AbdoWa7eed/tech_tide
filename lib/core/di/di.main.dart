@@ -12,6 +12,8 @@ abstract class ServiceLocator {
   }
 
   static Future initHome() async {
-    _getIt.registerLazySingleton<LayoutController>(() => LayoutController());
+    if (!_getIt.isRegistered<LayoutController>()) {
+      _getIt.registerLazySingleton<LayoutController>(() => LayoutController());
+    }
   }
 }
