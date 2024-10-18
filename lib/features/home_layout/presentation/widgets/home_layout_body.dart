@@ -4,6 +4,8 @@ import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/features/home/presentation/views/home_view.dart';
 import 'package:tech_tide/features/home_layout/presentation/provider/layout_controller.dart';
 
+import '../../../events/presentation/views/events_view.dart';
+
 class HomeLayoutBody extends StatefulWidget {
   const HomeLayoutBody({super.key});
 
@@ -23,7 +25,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
             //Add Home View
             HomeView(),
             //Add Event View
-            Placeholder(color: ColorManager.deepTeal),
+            EventsView(),
             //Opens "Add Post" BottomSheet
             SizedBox.shrink(),
             //Add Chats View
