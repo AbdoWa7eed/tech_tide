@@ -27,4 +27,8 @@ abstract class AppStrings {
   static const String events = 'events';
   static const String popularTopics = 'popularTopics';
   static const String trendingPosts = 'trendingPosts';
+  static const String postDetails = 'postDetails';
+  static const String showMore = 'showMore';
+  static const String showLess = 'showLess';
+  static const String replies = 'replies';
 }

@@ -5,6 +5,8 @@ abstract class Routes {
   static const String onboardingRoute = '/onboarding';
   static const String signUpRoute = '/sign-up';
   static const String homeRoute = '/home';
+  static const String popularTopicsRoute = '/popular-topics';
+  static const String postDetailsRoute = '/post-details';
 }
 
 abstract class RouteGenerator {
@@ -38,6 +40,18 @@ abstract class RouteGenerator {
           return ChangeNotifierProvider<LayoutController>(
               create: (context) => ServiceLocator.get(),
               child: const HomeLayout());
+        },
+      ),
+      GoRoute(
+        path: Routes.popularTopicsRoute,
+        pageBuilder: (context, state) {
+          return CustomSlideTransition(child: const PopularTopicView());
+        },
+      ),
+      GoRoute(
+        path: Routes.postDetailsRoute,
+        pageBuilder: (context, state) {
+          return CustomSlideTransition(child: const PostDetailsView());
         },
       ),
     ];

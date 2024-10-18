@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/routes/routes_manager.dart';
 
 class PopularTopicItem extends StatelessWidget {
   const PopularTopicItem({super.key, required this.color});
@@ -10,7 +12,9 @@ class PopularTopicItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.push(Routes.popularTopicsRoute);
+      },
       child: SizedBox(
         height: AppSize.s140,
         width: AppSize.s140,

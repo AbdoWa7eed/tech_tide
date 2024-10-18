@@ -4,35 +4,48 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/widgets/post/saved_post_button.dart';
 
 class PostHeaderWidget extends StatelessWidget {
-  const PostHeaderWidget({super.key});
+  const PostHeaderWidget({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.imageUrl,
+    this.isCanBeSaved = true,
+  });
+
+  final String title;
+  final String subTitle;
+  final String imageUrl;
+  final bool isCanBeSaved;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+          backgroundImage: NetworkImage(imageUrl),
         ),
-        SizedBox(width: AppSize.s12),
+        const SizedBox(width: AppSize.s12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'C++ in a nutshell',
+                title,
                 style: StylesManager.medium14,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                'Mohammed',
+                subTitle,
                 style: StylesManager.regular12,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
         ),
-        SavedPostButton(),
+        if (isCanBeSaved) ...[
+          const SavedPostButton(),
+        ]
       ],
     );
   }

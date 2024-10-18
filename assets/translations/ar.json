@@ -36,5 +36,9 @@
   "addPost": "إضافة منشور",
   "events": "الفعاليات",
   "trendingPosts": "المنشورات الراجئة",
-  "popularTopics": "الموضوعات الأكثر شعبية"
+  "popularTopics": "الموضوعات الأكثر شعبية",
+  "postDetails" : "تفاصيل المنشور",
+  "showMore" : "عرض المزيد",
+  "showLess" : "عرض اقل",
+  "replies" : "الردود"
 }
