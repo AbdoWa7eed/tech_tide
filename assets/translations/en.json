@@ -36,5 +36,9 @@
   "addPost": "Add Post",
   "events": "Events",
   "trendingPosts": "Trending Posts",
-  "popularTopics": "Popular Topics"
+  "popularTopics": "Popular Topics",
+  "postDetails" : "Post Details",
+  "showMore" : "Show More",
+  "showLess" : "Show Less",
+  "replies" : "Replies"
 }
