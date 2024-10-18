@@ -7,10 +7,14 @@ class PasswordFormField extends StatelessWidget {
     super.key,
     required this.label,
     required this.hintText,
+    this.controller,
+    this.validator,
   });
 
   final String label;
   final String hintText;
+  final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,8 @@ class PasswordFormField extends StatelessWidget {
       label: label,
       hintText: hintText,
       isObscure: true,
+      controller: controller,
+      validator: validator,
       suffix: const Icon(
         Icons.remove_red_eye_outlined,
         color: ColorManager.gray,
