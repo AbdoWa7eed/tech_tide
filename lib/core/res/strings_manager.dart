@@ -32,4 +32,11 @@ abstract class AppStrings {
   static const String showLess = 'showLess';
   static const String replies = 'replies';
   static const String addReply = 'addReply';
+  static const String createPost = 'createPost';
+  static const String title = 'title';
+  static const String addPostTitle = 'addPostTitle';
+  static const String content = 'content';
+  static const String addContent = 'addContent';
+  static const String tags = 'tags';
+  static const String addTags = 'addTags';
 }

@@ -41,5 +41,12 @@
   "showMore" : "عرض المزيد",
   "showLess" : "عرض اقل",
   "replies" : "الردود",
-  "addReply" : "شارك ..."
+  "addReply" : "شارك ...",
+  "createPost" : "انشاء منشور",
+  "title" : "العنوان",
+  "addPostTitle": "اضافة عنوان",
+  "content" : "المحتوى",
+  "addContent" : "اضافة المحتوى",
+  "tags" : "الوسوم",
+  "addTag" : "اضافة وسم ...",
 }

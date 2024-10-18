@@ -53,6 +53,7 @@ dependencies:
   form_validator: ^2.1.1
   flutter_svg: ^2.0.10+1
   readmore: ^3.0.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
