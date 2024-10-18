@@ -3,7 +3,7 @@ import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
-import 'package:tech_tide/features/post_details/widgets/post_reply_widget.dart';
+import 'package:tech_tide/features/post_details/presentation/widgets/post_reply_widget.dart';
 
 class PostRepliesWidget extends StatelessWidget {
   const PostRepliesWidget({super.key});
@@ -20,6 +20,7 @@ class PostRepliesWidget extends StatelessWidget {
         const SizedBox(height: AppSize.s12),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: AppPadding.p40),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return const PostReplyWidget();

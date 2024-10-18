@@ -29,4 +29,25 @@ class PostResponseModel {
 
   factory PostResponseModel.fromJson(Map<String, dynamic> json) =>
       _$PostResponseModelFromJson(json);
+
+  PostResponseModel copyWith(
+      {String? content,
+      String? title,
+      String? postId,
+      UserResponseModel? user,
+      int? likes,
+      int? replies,
+      int? views,
+      DateTime? createdAt}) {
+    return PostResponseModel(
+      content: content ?? this.content,
+      title: title ?? this.title,
+      postId: postId ?? this.postId,
+      user: user ?? this.user,
+      likes: likes ?? this.likes,
+      replies: replies ?? this.replies,
+      views: views ?? this.views,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 }

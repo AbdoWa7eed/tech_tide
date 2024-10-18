@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
+import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/widgets/post/post_header_widget.dart';
 import 'package:tech_tide/core/widgets/post/post_tags_widget.dart';
-import 'package:tech_tide/features/post_details/widgets/post_content_widget.dart';
-import 'package:tech_tide/features/post_details/widgets/post_images_list_widget.dart';
-
-import '../../../core/res/values_manager.dart';
+import 'package:tech_tide/features/post_details/presentation/widgets/post_content_widget.dart';
+import 'package:tech_tide/features/post_details/presentation/widgets/post_images_list_widget.dart';
 
 class PostDetailsWidget extends StatelessWidget {
   const PostDetailsWidget({super.key});

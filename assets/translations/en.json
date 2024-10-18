@@ -40,5 +40,6 @@
   "postDetails" : "Post Details",
   "showMore" : "Show More",
   "showLess" : "Show Less",
-  "replies" : "Replies"
+  "replies" : "Replies",
+  "addReply" : "Add a reply..."
 }
