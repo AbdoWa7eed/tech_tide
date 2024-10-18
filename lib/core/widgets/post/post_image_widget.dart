@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
-import 'package:tech_tide/features/post_details/views/full_screen_image_view.dart';
+import 'package:tech_tide/features/post_details/presentation/views/full_screen_image_view.dart';
 
 class PostImageWidget extends StatelessWidget {
   const PostImageWidget({super.key});

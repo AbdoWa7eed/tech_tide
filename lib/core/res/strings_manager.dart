@@ -31,4 +31,5 @@ abstract class AppStrings {
   static const String showMore = 'showMore';
   static const String showLess = 'showLess';
   static const String replies = 'replies';
+  static const String addReply = 'addReply';
 }
