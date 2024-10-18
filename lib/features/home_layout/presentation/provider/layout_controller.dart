@@ -6,7 +6,9 @@ class LayoutController extends ChangeNotifier {
 
   void setIndex(int index) {
     _currentIndex = index;
-    pageController.jumpToPage(index);
+    if (index != 2) {
+      pageController.jumpToPage(index);
+    }
     notifyListeners();
   }
 

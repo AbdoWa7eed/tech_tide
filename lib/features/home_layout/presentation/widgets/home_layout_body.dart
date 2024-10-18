@@ -25,7 +25,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
             //Add Event View
             Placeholder(color: ColorManager.deepTeal),
             //Opens "Add Post" BottomSheet
-            Placeholder(color: ColorManager.paleBlue),
+            SizedBox.shrink(),
             //Add Chats View
             Placeholder(color: ColorManager.error),
             //Add Profile View

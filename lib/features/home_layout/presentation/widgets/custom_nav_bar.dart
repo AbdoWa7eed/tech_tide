@@ -6,6 +6,7 @@ import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
+import 'package:tech_tide/features/add_post/presentation/views/add_post_view.dart';
 import 'package:tech_tide/features/home_layout/presentation/provider/layout_controller.dart';
 
 class CustomNavBarWidget extends StatelessWidget {
@@ -84,12 +85,26 @@ class CustomNavBarWidget extends StatelessWidget {
               showUnselectedLabels: true,
               currentIndex: provider.index,
               onTap: (index) {
-                provider.setIndex(index);
+                if (index == 2) {
+                  _showAddPostBottomSheet(context);
+                } else {
+                  provider.setIndex(index);
+                }
               },
               items: items,
               selectedItemColor: ColorManager.primary,
               unselectedItemColor: ColorManager.black,
             ));
+      },
+    );
+  }
+
+  void _showAddPostBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return const AddPostView();
       },
     );
   }

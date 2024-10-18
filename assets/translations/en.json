@@ -41,5 +41,12 @@
   "showMore" : "Show More",
   "showLess" : "Show Less",
   "replies" : "Replies",
-  "addReply" : "Add a reply..."
+  "addReply" : "Add a reply...",
+  "createPost" : "Create Post",
+  "title" : "Title",
+  "addPostTitle": "Add Title ...",
+  "content" : "Content",
+  "addContent" : "Enter Content ...",
+  "tags" : "Tags",
+  "addTags": "Enter Tags ..."
 }

@@ -17,10 +17,8 @@ class TagContainerWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppSize.s8)),
       child: Center(
         child: Text(
-          "#$tag",
-          style: StylesManager.regular12.copyWith(
-            decoration: TextDecoration.underline,
-          ),
+          tag,
+          style: StylesManager.regular12,
           textAlign: TextAlign.center,
         ),
       ),
