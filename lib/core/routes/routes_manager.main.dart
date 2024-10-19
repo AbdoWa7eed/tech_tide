@@ -4,6 +4,7 @@ abstract class Routes {
   static const String initialRoute = '/';
   static const String onboardingRoute = '/onboarding';
   static const String signUpRoute = '/sign-up';
+  static const String loginRoute = '/login';
   static const String homeRoute = '/home';
   static const String popularTopicsRoute = '/popular-topics';
   static const String postDetailsRoute = '/post-details';
@@ -35,9 +36,24 @@ abstract class RouteGenerator {
         },
       ),
       GoRoute(
-        path: Routes.signUpRoute,
+        path: Routes.loginRoute,
         builder: (context, state) {
-          return const SignupView();
+          ServiceLocator.initAuth();
+          return BlocProvider<AuthCubit>(
+            create: (context) => ServiceLocator.get(),
+            child: const LoginView(),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.signUpRoute,
+        pageBuilder: (context, state) {
+          return CustomSlideTransition(
+            child: BlocProvider<AuthCubit>.value(
+              value: ServiceLocator.get(),
+              child: const SignupView(),
+            ),
+          );
         },
       ),
       GoRoute(

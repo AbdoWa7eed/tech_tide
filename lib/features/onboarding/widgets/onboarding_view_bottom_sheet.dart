@@ -37,7 +37,7 @@ class OnboardingViewBottomSheet extends StatelessWidget {
           CustomWideButton(
             buttonText: AppStrings.getStarted.translate,
             onPressed: () {
-              context.pushReplacement(Routes.signUpRoute);
+              context.pushReplacement(Routes.loginRoute);
             },
           ),
         ],

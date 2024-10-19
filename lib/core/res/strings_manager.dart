@@ -6,6 +6,7 @@ abstract class AppStrings {
   static const String onboardingSubTitle = 'onboardingSubTitle';
   static const String getStarted = 'getStarted';
   static const String createAccount = 'createAccount';
+  static const String loginTo = 'loginTo';
   static const String name = 'name';
   static const String email = 'email';
   static const String password = 'password';

@@ -23,7 +23,7 @@
   "sloganMessage": "Connect. Collaborate. Code.",
   "unexpectedError": "An unexpected error occurred. Please try again later.",
   "userNotFound": "No user found for that email.",
-  "wrongPassword": "The password is incorrect.",
+  "invalidCredentials": "Email or password is invalid.",
   "welcomeMessage": "Welcome to TechTide!",
   "getStarted": "Get Started",
   "signup": "Sign Up",
@@ -53,5 +53,6 @@
   "fieldsRequired" : "This field is required.",
   "mustBeAtLeast6Chars": "Must be at least 6 characters long.",
   "invalidEmailInput" : "Please enter a valid email.",
-  "likes": "Likes"
+  "likes": "Likes",
+  "loginTo" : "Login To "
 }

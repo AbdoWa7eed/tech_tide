@@ -22,8 +22,8 @@ abstract class ErrorHandler {
         return Failure(message: ErrorMessages.invalidEmail.translate);
       case 'user-not-found':
         return Failure(message: ErrorMessages.userNotFound.translate);
-      case 'wrong-password':
-        return Failure(message: ErrorMessages.wrongPassword.translate);
+      case 'invalid-credential':
+        return Failure(message: ErrorMessages.invalidCredentials.translate);
       case 'email-already-in-use':
         return Failure(message: ErrorMessages.emailAlreadyInUse.translate);
       default:

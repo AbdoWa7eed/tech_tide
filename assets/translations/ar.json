@@ -17,7 +17,7 @@
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "invalidEmail": "عنوان البريد الإلكتروني غير صالح.",
   "userNotFound": "لا يوجد مستخدم مرتبط بهذا البريد الإلكتروني.",
-  "wrongPassword": "كلمة المرور غير صحيحة.",
+  "invalidCredentials": "البريد الإلكتروني او كلمة المرور غير صحيحة.",
   "emailAlreadyInUse": "عنوان البريد الإلكتروني مستخدم بالفعل.",
   "authenticationFailed": "فشل في عملية المصادقة. يرجى المحاولة مرة أخرى.",
   "permissionDenied": "ليس لديك الإذن للوصول إلى هذا المورد.",
@@ -53,5 +53,6 @@
   "fieldsRequired" : "هذا الحقل مطلوب",
   "mustBeAtLeast6Chars": "يجب أن يكون على الأقل 6 حروف.",
   "invalidEmailInput" : "البريد الإلكتروني غير صالح.",
-  "likes": "اعجابات"
+  "likes": "اعجابات",
+  "LoginTo" : "سجل دخولك الى "
 }
