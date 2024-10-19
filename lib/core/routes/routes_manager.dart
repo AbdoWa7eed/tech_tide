@@ -10,5 +10,6 @@ import 'package:tech_tide/features/splash/presentation/splash_view.dart';
 
 import '../../features/popular_topic/presentation/views/popular_topic_view.dart';
 import '../../features/post_details/presentation/views/post_details_view.dart';
+import '../../features/event_details/presentation/views/event_details_view.dart';
 
 part 'routes_manager.main.dart';

@@ -7,6 +7,7 @@ abstract class Routes {
   static const String homeRoute = '/home';
   static const String popularTopicsRoute = '/popular-topics';
   static const String postDetailsRoute = '/post-details';
+  static const String eventDetailsRoute = '/event-details';
 }
 
 abstract class RouteGenerator {
@@ -15,6 +16,12 @@ abstract class RouteGenerator {
 
   static List<GoRoute> get _routes {
     return [
+      GoRoute(
+        path: Routes.eventDetailsRoute,
+        builder: (context, state) {
+          return const EventDetailsView();
+        },
+      ),
       GoRoute(
         path: Routes.initialRoute,
         builder: (context, state) {
