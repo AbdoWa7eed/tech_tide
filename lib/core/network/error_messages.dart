@@ -2,7 +2,7 @@
 abstract class ErrorMessages {
   static const String invalidEmail = "invalidEmail";
   static const String userNotFound = "userNotFound";
-  static const String wrongPassword = "wrongPassword";
+  static const String invalidCredentials = "invalidCredentials";
   static const String emailAlreadyInUse = "emailAlreadyInUse";
   static const String authenticationFailed = "authenticationFailed";
   static const String permissionDenied = "permissionDenied";

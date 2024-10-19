@@ -5,29 +5,23 @@ import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:tech_tide/features/auth/presentation/widgets/already_have_account_button.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/auth_welcome_text.dart';
+import 'package:tech_tide/features/auth/presentation/widgets/dont_have_account_button.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/labeled_textfield.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/password_form_field.dart';
 
-class SignupViewBody extends StatefulWidget {
-  const SignupViewBody({super.key});
+class LoginViewBody extends StatefulWidget {
+  const LoginViewBody({super.key});
 
   @override
-  State<SignupViewBody> createState() => _SignupViewBodyState();
+  State<LoginViewBody> createState() => _LoginViewBodyState();
 }
 
-class _SignupViewBodyState extends State<SignupViewBody> {
-  final TextEditingController _nameController = TextEditingController();
-
+class _LoginViewBodyState extends State<LoginViewBody> {
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
-
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -38,19 +32,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         child: Column(
           children: [
             AuthWelcomeText(
-              text: AppStrings.createAccount.translate,
+              text: AppStrings.loginTo.translate,
             ),
             const SizedBox(height: AppSize.s20),
-            LabeledTextField(
-              label: AppStrings.name.translate,
-              hintText: AppStrings.nameHint.translate,
-              controller: _nameController,
-              validator: ValidationBuilder()
-                  .minLength(6, AppStrings.mustBeAtLeast6Chars.translate)
-                  .required(AppStrings.fieldsRequired.translate)
-                  .build(),
-            ),
-            const SizedBox(height: AppSize.s16),
             LabeledTextField(
               label: AppStrings.email.translate,
               hintText: AppStrings.emailHint.translate,
@@ -70,42 +54,23 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   .minLength(6, AppStrings.mustBeAtLeast6Chars.translate)
                   .build(),
             ),
-            const SizedBox(height: AppSize.s16),
-            PasswordFormField(
-                label: AppStrings.confirmPassword.translate,
-                hintText: AppStrings.confirmPasswordHint.translate,
-                controller: _confirmPasswordController,
-                validator: ValidationBuilder(
-                        requiredMessage: AppStrings.fieldsRequired.translate)
-                    .add(_confirmPasswordValidator)
-                    .build()),
             const SizedBox(height: AppSize.s40),
             AuthSubmitButton(
-              buttonText: AppStrings.signup.translate,
+              buttonText: AppStrings.login.translate,
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
-                  context.read<AuthCubit>().register(
+                  context.read<AuthCubit>().login(
                         email: _emailController.text.trim(),
-                        username: _nameController.text.trim(),
                         password: _passwordController.text,
                       );
                 }
               },
             ),
             const SizedBox(height: AppSize.s12),
-            const AlreadyHaveAccountButton(),
+            const DontHaveAccountButton(),
           ],
         ),
       ),
     );
-  }
-
-  StringValidationCallback get _confirmPasswordValidator {
-    return (value) {
-      if (value != _passwordController.text) {
-        return AppStrings.passwordDontMatch.translate;
-      }
-      return null;
-    };
   }
 }

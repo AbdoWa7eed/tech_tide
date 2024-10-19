@@ -9,9 +9,9 @@ class EventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(title: 'Events'),
+      appBar: const GradientAppBar(title: 'Events'),
       body: ListView(
-        children: [
+        children: const [
           EventCard(),
           EventCard(),
         ],

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/features/auth/presentation/views/auth_listener_widget.dart';
 import 'package:tech_tide/features/auth/presentation/widgets/header_image_widget.dart';
-import 'package:tech_tide/features/auth/presentation/widgets/signup_view_body.dart';
+import 'package:tech_tide/features/auth/presentation/widgets/login_view_body.dart';
 
-class SignupView extends StatelessWidget {
-  const SignupView({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class SignupView extends StatelessWidget {
                         start: AppPadding.p20,
                         end: AppPadding.p20,
                       ),
-                      child: SignupViewBody(),
+                      child: LoginViewBody(),
                     ),
                   ),
                 ),
