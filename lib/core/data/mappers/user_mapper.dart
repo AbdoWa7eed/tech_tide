@@ -6,6 +6,7 @@ extension UserMapper on UserResponseModel {
   UserEntity toEntity() {
     return UserEntity(
       userId: userId.orEmpty(),
+      savedPosts: savedPosts ?? [],
       bio: bio.orEmpty(),
       email: email.orEmpty(),
       imageUrl: imageUrl.orEmpty(),

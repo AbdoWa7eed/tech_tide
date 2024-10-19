@@ -11,9 +11,8 @@ class PostResponseModel {
   final String? title;
   final String? postId;
   final UserResponseModel? user;
-  final int? likes;
+  final List<String>? likes;
   final int? replies;
-  final int? views;
   @TimestampConverter()
   final DateTime? createdAt;
 
@@ -24,7 +23,6 @@ class PostResponseModel {
       required this.user,
       required this.likes,
       required this.replies,
-      required this.views,
       required this.createdAt});
 
   factory PostResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -35,9 +33,8 @@ class PostResponseModel {
       String? title,
       String? postId,
       UserResponseModel? user,
-      int? likes,
+      List<String>? likes,
       int? replies,
-      int? views,
       DateTime? createdAt}) {
     return PostResponseModel(
       content: content ?? this.content,
@@ -46,7 +43,6 @@ class PostResponseModel {
       user: user ?? this.user,
       likes: likes ?? this.likes,
       replies: replies ?? this.replies,
-      views: views ?? this.views,
       createdAt: createdAt ?? this.createdAt,
     );
   }

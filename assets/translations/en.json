@@ -54,5 +54,10 @@
   "mustBeAtLeast6Chars": "Must be at least 6 characters long.",
   "invalidEmailInput" : "Please enter a valid email.",
   "likes": "Likes",
-  "loginTo" : "Login To "
+  "loginTo" : "Login To ",
+  "reload" : "Reload",
+  "hi" : "Hi",
+  "homeSubtitle" : "Find topics that you like to read",
+  "posts" : "Posts",
+  "noContent" : "Currently no content to show."
 }

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tech_tide/core/entities/post_entity.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/widgets/circled_network_image.dart';
 import 'package:tech_tide/core/widgets/post/saved_post_button.dart';
+import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
+import 'package:tech_tide/features/manage_post/presentation/cubit/manage_post_cubit.dart';
 
 class PostHeaderWidget extends StatelessWidget {
   const PostHeaderWidget({
     super.key,
-    required this.title,
-    required this.subTitle,
-    required this.imageUrl,
-    this.isCanBeSaved = true,
+    required this.post,
   });
 
-  final String title;
-  final String subTitle;
-  final String imageUrl;
-  final bool isCanBeSaved;
+  final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(imageUrl),
+        CircledNetworkImage(
+          imageUrl: post.user.imageUrl,
         ),
         const SizedBox(width: AppSize.s12),
         Expanded(
@@ -31,22 +30,30 @@ class PostHeaderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                post.title,
                 style: StylesManager.medium14,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                subTitle,
+                post.user.username,
                 style: StylesManager.regular12,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
         ),
-        if (isCanBeSaved) ...[
-          const SavedPostButton(),
-        ]
+        SavedPostButton(
+          initialValue: isSaved(context),
+          onPressed: (isSaved) {
+            context.read<ManagePostCubit>().toggleSavePost(post.id);
+          },
+        ),
       ],
     );
+  }
+
+  bool isSaved(BuildContext context) {
+    final user = context.read<LayoutCubit>().user;
+    return user.savedPosts.contains(post.id);
   }
 }

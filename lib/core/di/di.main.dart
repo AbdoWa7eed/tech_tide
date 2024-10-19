@@ -5,6 +5,8 @@ abstract class ServiceLocator {
 
   static T get<T extends Object>() => _getIt<T>();
 
+  static unregister<T extends Object>() => _getIt.unregister<T>();
+
   static Future init() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     _getIt
@@ -22,7 +24,7 @@ abstract class ServiceLocator {
             () => AuthDataSourceImpl(_getIt(), _getIt()))
         ..registerLazySingleton<AuthRepository>(
             () => AuthRepositoryImpl(_getIt()))
-        ..registerLazySingleton<AuthCubit>(() => AuthCubit(_getIt(), _getIt()));
+        ..registerLazySingleton<AuthCubit>(() => AuthCubit(_getIt()));
     }
   }
 
@@ -32,9 +34,59 @@ abstract class ServiceLocator {
     _getIt.unregister<AuthCubit>();
   }
 
-  static Future initHome() async {
-    if (!_getIt.isRegistered<LayoutController>()) {
-      _getIt.registerLazySingleton<LayoutController>(() => LayoutController());
+  static initPostResource() {
+    if (!_getIt.isRegistered<ManagePostCubit>()) {
+      _getIt
+        ..registerLazySingleton<PostsDataSource>(
+            () => PostsDataSourceImpl(_getIt()))
+        ..registerLazySingleton<ManagePostDataSource>(
+            () => ManagePostDataSourceImpl(_getIt(), _getIt()))
+        ..registerLazySingleton<ManagePostRepository>(
+            () => ManagePostRepositoryImpl(_getIt()))
+        ..registerLazySingleton<ManagePostCubit>(
+            () => ManagePostCubit(_getIt()));
     }
+  }
+
+  static Future initHomeLayout() async {
+    initPostResource();
+    if (!_getIt.isRegistered<UserDataSource>()) {
+      _getIt
+        ..registerLazySingleton<UserDataSource>(
+            () => UserDataSourceImpl(_getIt(), _getIt()))
+        ..registerLazySingleton<UserRepository>(
+            () => UserRepositoryImpl(_getIt()));
+    }
+
+    if (!_getIt.isRegistered<LayoutCubit>()) {
+      _getIt.registerLazySingleton<LayoutCubit>(() => LayoutCubit(_getIt()));
+    }
+
+    initHome();
+  }
+
+  static initHome() {
+    if (!_getIt.isRegistered<HomeRepository>()) {
+      _getIt
+        ..registerLazySingleton<HomeDataSource>(
+            () => HomeDataSourceImpl(_getIt(), _getIt()))
+        ..registerLazySingleton<HomeRepository>(
+            () => HomeRepositoryImpl(_getIt()));
+    }
+    if (!_getIt.isRegistered<HomeCubit>()) {
+      _getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(_getIt()));
+    }
+  }
+
+  static initPopularTopic() {
+    if (!_getIt.isRegistered<PopularTopicRepository>()) {
+      _getIt
+        ..registerLazySingleton<PopularTopicDataSource>(
+            () => PopularTopicDataSourceImpl(_getIt(), _getIt()))
+        ..registerLazySingleton<PopularTopicRepository>(
+            () => PopularTopicRepositoryImpl(_getIt()));
+    }
+    _getIt
+        .registerFactory<PopularTopicCubit>(() => PopularTopicCubit(_getIt()));
   }
 }

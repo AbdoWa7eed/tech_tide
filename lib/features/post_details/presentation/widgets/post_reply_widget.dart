@@ -3,7 +3,7 @@ import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/widgets/custom_readmore_text.dart';
 import 'package:tech_tide/core/widgets/post/like_post_button.dart';
-import 'package:tech_tide/core/widgets/post/post_header_widget.dart';
+import 'package:tech_tide/features/post_details/presentation/widgets/reply_header_widget.dart';
 
 class PostReplyWidget extends StatelessWidget {
   const PostReplyWidget({super.key});
@@ -19,11 +19,10 @@ class PostReplyWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PostHeaderWidget(
+            ReplyHeaderWidget(
               title: "Mohammed",
               subTitle: "1h ago",
               imageUrl: 'https://i.pravatar.cc/300',
-              isCanBeSaved: false,
             ),
             SizedBox(
               height: AppSize.s12,
@@ -36,7 +35,10 @@ class PostReplyWidget extends StatelessWidget {
                   " It was popularised in the 1960s with the release of Latest sheets containing Lorem Ipsum passages, "
                   "and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
             ),
-            LikePostButton()
+            LikePostButton(
+              isLiked: false,
+              likes: 1,
+            )
           ],
         ),
       ),

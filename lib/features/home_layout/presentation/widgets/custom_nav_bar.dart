@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/features/add_post/presentation/views/add_post_view.dart';
-import 'package:tech_tide/features/home_layout/presentation/provider/layout_controller.dart';
+import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 
 class CustomNavBarWidget extends StatelessWidget {
   CustomNavBarWidget({super.key});
@@ -66,8 +66,12 @@ class CustomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LayoutController>(
-      builder: (context, provider, child) {
+    return BlocBuilder<LayoutCubit, LayoutState>(
+      builder: (context, state) {
+        if (state is! LayoutLoaded) {
+          return const SizedBox.shrink();
+        }
+        final cubit = context.read<LayoutCubit>();
         return Container(
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: const BoxDecoration(
@@ -83,12 +87,12 @@ class CustomNavBarWidget extends StatelessWidget {
               backgroundColor: ColorManager.white,
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: true,
-              currentIndex: provider.index,
+              currentIndex: cubit.index,
               onTap: (index) {
                 if (index == 2) {
                   _showAddPostBottomSheet(context);
                 } else {
-                  provider.setIndex(index);
+                  cubit.setIndex(index);
                 }
               },
               items: items,

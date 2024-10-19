@@ -8,9 +8,11 @@ class UserEntity {
   final int likesCount;
   final int postsCount;
   final int repliesCount;
+  final List<String> savedPosts;
 
   UserEntity(
       {required this.userId,
+      required this.savedPosts,
       required this.bio,
       required this.email,
       required this.imageUrl,

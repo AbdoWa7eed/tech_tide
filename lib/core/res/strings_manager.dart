@@ -45,4 +45,9 @@ abstract class AppStrings {
   static const String fieldsRequired = 'fieldsRequired';
   static const String mustBeAtLeast6Chars = 'mustBeAtLeast6Chars';
   static const String invalidEmailInput = 'invalidEmailInput';
+  static const String reload = 'reload';
+  static const String hi = 'hi';
+  static const String homeSubtitle = 'homeSubtitle';
+  static const String posts = 'posts';
+  static const String noContent = 'noContent';
 }

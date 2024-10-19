@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/routes/routes_manager.dart';
+import 'package:tech_tide/core/utils/app_preferences.dart';
 import 'package:tech_tide/core/widgets/fade_transition.dart';
 
 class SplashViewBody extends StatelessWidget {
@@ -44,6 +47,16 @@ class SplashViewBody extends StatelessWidget {
   }
 
   void _goNext(BuildContext context) {
-    context.pushReplacement(Routes.onboardingRoute);
+    final auth = ServiceLocator.get<FirebaseAuth>();
+    if (auth.currentUser != null) {
+      return context.pushReplacement(Routes.homeRoute);
+    } else {
+      final appPreferences = ServiceLocator.get<AppPreferences>();
+
+      if (!appPreferences.isOnBoardingViewed) {
+        return context.pushReplacement(Routes.onboardingRoute);
+      }
+      return context.pushReplacement(Routes.homeRoute);
+    }
   }
 }

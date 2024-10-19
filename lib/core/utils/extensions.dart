@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,12 @@ extension NavigationExtension on BuildContext {
       pop(extra);
     }
   }
+}
+
+extension EitherX<Failure, R> on Either<Failure, R> {
+  R get value => (this as Right<Failure, R>).value;
+
+  Failure get failure => (this as Left<Failure, R>).value;
 }
 
 extension StringExtension on String? {

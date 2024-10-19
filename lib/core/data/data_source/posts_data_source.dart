@@ -7,7 +7,7 @@ import 'package:tech_tide/core/network/firebase_constants.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 
 abstract class PostsDataSource {
-  Future<List<PostResponseModel>> getPosts(Query<Map<String, dynamic>> posts);
+  Stream<List<PostResponseModel>> getPosts(Query<Map<String, dynamic>> posts);
   Future<PostResponseModel> getPostById(String postId);
 }
 
@@ -17,41 +17,41 @@ class PostsDataSourceImpl implements PostsDataSource {
   PostsDataSourceImpl(this._firebaseFirestore);
 
   @override
-  Future<List<PostResponseModel>> getPosts(
-      Query<Map<String, dynamic>> postsIds) async {
-    final data = await postsIds.get();
-    final userIds = data.docs
-        .map((doc) => doc.data()[FirebaseConstants.userIdField])
-        .toSet()
-        .toList();
+  Stream<List<PostResponseModel>> getPosts(
+      Query<Map<String, dynamic>> postsIds) {
+    return postsIds.snapshots().asyncMap((data) async {
+      final userIds = data.docs
+          .map((doc) => doc.data()[FirebaseConstants.userIdField])
+          .toSet()
+          .toList();
 
-    final usersSnapshot = await _firebaseFirestore
-        .collection(FirebaseConstants.usersCollection)
-        .where(FirebaseConstants.userIdField, whereIn: userIds)
-        .get();
+      final usersSnapshot = await _firebaseFirestore
+          .collection(FirebaseConstants.usersCollection)
+          .where(FirebaseConstants.userIdField, whereIn: userIds)
+          .get();
 
-    final userMap = {
-      for (var userDoc in usersSnapshot.docs)
-        userDoc.data()[FirebaseConstants.userIdField]:
-            UserResponseModel.fromJson(userDoc.data())
-    };
+      final userMap = {
+        for (var userDoc in usersSnapshot.docs)
+          userDoc.data()[FirebaseConstants.userIdField]:
+              UserResponseModel.fromJson(userDoc.data())
+      };
 
-    final posts = data.docs.map((doc) {
-      final postData = doc.data();
-      final userId = postData[FirebaseConstants.userIdField] as String;
+      final posts = data.docs.map((doc) {
+        final postData = doc.data();
+        final userId = postData[FirebaseConstants.userIdField] as String;
+        return PostResponseModel.fromJson(postData).copyWith(
+          user: userMap[userId],
+        );
+      }).toList();
 
-      return PostResponseModel.fromJson(postData).copyWith(
-        user: userMap[userId],
-      );
-    }).toList();
-
-    return posts;
+      return posts;
+    });
   }
 
   @override
   Future<PostResponseModel> getPostById(String postId) async {
     final postSnapshot = await _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
+        .collection(FirebaseConstants.postsKey)
         .doc(postId)
         .get();
 

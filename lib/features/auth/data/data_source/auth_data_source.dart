@@ -35,8 +35,15 @@ class AuthDataSourceImpl implements AuthDataSource {
     if (!user.exists) {
       throw Failure(message: ErrorMessages.userNotFound.translate);
     }
+    final savedPosts = await _firebaseFirestore
+        .collection(FirebaseConstants.usersCollection)
+        .doc(userCredentials.user?.uid)
+        .collection(FirebaseConstants.savedPostsCollection)
+        .get();
+    final userModel = UserResponseModel.fromJson(user.data() ?? {});
 
-    return UserResponseModel.fromJson(user.data() ?? {});
+    return userModel.copyWith(
+        savedPosts: savedPosts.docs.map((e) => e.id).toList());
   }
 
   @override
