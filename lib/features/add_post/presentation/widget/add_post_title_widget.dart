@@ -18,7 +18,9 @@ class AddPostTitleWidget extends StatelessWidget {
         style: StylesManager.medium18,
       ),
       const SizedBox(height: AppSize.s12),
-      CustomWhiteTextField(hintText: AppStrings.addPostTitle.translate)
+      CustomWhiteTextField(
+          controller: titleController,
+          hintText: AppStrings.addPostTitle.translate)
     ]);
   }
 }

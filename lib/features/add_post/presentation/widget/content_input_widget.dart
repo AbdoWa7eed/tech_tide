@@ -32,6 +32,7 @@ class ContentInputWidget extends StatelessWidget {
           child: Column(
             children: [
               CustomWhiteTextField(
+                controller: contentController,
                 borderRadius: 0,
                 minLines: 5,
                 hintText: AppStrings.addContent.translate,

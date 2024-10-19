@@ -48,5 +48,10 @@
   "content" : "Content",
   "addContent" : "Enter Content ...",
   "tags" : "Tags",
-  "addTags": "Enter Tags ..."
+  "addTags": "Enter Tags ...",
+  "passwordDontMatch" : "Passwords do not match.",
+  "fieldsRequired" : "This field is required.",
+  "mustBeAtLeast6Chars": "Must be at least 6 characters long.",
+  "invalidEmailInput" : "Please enter a valid email.",
+  "likes": "Likes"
 }

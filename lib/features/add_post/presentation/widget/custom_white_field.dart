@@ -11,6 +11,7 @@ class CustomWhiteTextField extends StatelessWidget {
   final double borderRadius;
   final Function(String value)? onSubmit;
   final TextInputAction? textInputAction;
+  final Widget? suffix;
 
   const CustomWhiteTextField({
     super.key,
@@ -22,6 +23,7 @@ class CustomWhiteTextField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onSubmit,
+    this.suffix,
   });
 
   @override
@@ -38,6 +40,7 @@ class CustomWhiteTextField extends StatelessWidget {
       maxLines: maxLines,
       minLines: minLines,
       decoration: InputDecoration(
+        suffixIcon: suffix,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: const BorderSide(color: ColorManager.babyBlue),

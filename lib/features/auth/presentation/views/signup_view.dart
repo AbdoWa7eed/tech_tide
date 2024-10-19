@@ -19,8 +19,8 @@ class SignupView extends StatelessWidget {
               const HeaderImageWidget(),
               Positioned(
                 top: height * 0.26,
-                left: 0,
                 right: 0,
+                left: 0,
                 bottom: 0,
                 child: Container(
                   decoration: const BoxDecoration(
@@ -30,9 +30,10 @@ class SignupView extends StatelessWidget {
                     ),
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppPadding.p18,
-                      horizontal: AppPadding.p20,
+                    padding: EdgeInsetsDirectional.only(
+                      top: AppPadding.p18,
+                      start: AppPadding.p20,
+                      end: AppPadding.p20,
                     ),
                     child: SignupViewBody(),
                   ),

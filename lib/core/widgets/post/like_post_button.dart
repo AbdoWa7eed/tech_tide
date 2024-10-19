@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
+import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/utils/extensions.dart';
 
 class LikePostButton extends StatefulWidget {
   const LikePostButton({super.key, this.onPressed});
@@ -30,8 +32,8 @@ class _LikePostButtonState extends State<LikePostButton> {
             color: isLiked ? ColorManager.error : null,
           ),
           const SizedBox(width: AppSize.s12), // Spacing
-          const Text(
-            "120",
+          Text(
+            "120 ${AppStrings.likes.translate}",
           ),
         ],
       ),
