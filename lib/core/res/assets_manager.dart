@@ -9,4 +9,6 @@ abstract class AssetsManager {
   static const String saveIcon = 'assets/images/save.svg';
   static const String commentIcon = 'assets/images/comment.svg';
   static const String sendIcon = 'assets/images/send.svg';
+  static const String errorJson = 'assets/json/error.json';
+  static const String userImagePlaceholder = 'assets/images/user.png';
 }

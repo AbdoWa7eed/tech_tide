@@ -5,9 +5,8 @@ class PostEntity {
   final String title;
   final String content;
   final UserEntity user;
-  final int likes;
+  final List<String> likes;
   final int replies;
-  final int views;
   final DateTime createdAt;
 
   PostEntity({
@@ -17,7 +16,6 @@ class PostEntity {
     required this.user,
     required this.likes,
     required this.replies,
-    required this.views,
     required this.createdAt,
   });
 }

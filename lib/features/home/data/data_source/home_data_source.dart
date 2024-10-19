@@ -5,7 +5,7 @@ import 'package:tech_tide/core/network/firebase_constants.dart';
 import 'package:tech_tide/features/home/data/models/popular_topic_model.dart';
 
 abstract class HomeDataSource {
-  Future<List<PostResponseModel>> getTrendingPosts();
+  Stream<List<PostResponseModel>> getTrendingPosts();
 
   Future<List<PopularTopicResponseModel>> getPopularTopics();
 }
@@ -31,13 +31,13 @@ class HomeDataSourceImpl implements HomeDataSource {
   }
 
   @override
-  Future<List<PostResponseModel>> getTrendingPosts() async {
+  Stream<List<PostResponseModel>> getTrendingPosts() {
     final query = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
-        .orderBy(FirebaseConstants.likesField, descending: true)
+        .collection(FirebaseConstants.postsKey)
+        .orderBy(FirebaseConstants.likesKey, descending: true)
         .limit(8);
 
-    final posts = await _postsDataSource.getPosts(query);
+    final posts = _postsDataSource.getPosts(query);
 
     return posts;
   }

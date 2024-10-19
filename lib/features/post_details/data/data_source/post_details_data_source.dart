@@ -26,19 +26,19 @@ class PostDetailsDataSourceImpl implements PostDetailsDataSource {
     final post = await _postsDataSource.getPostById(postId);
 
     final repliesCollection = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
+        .collection(FirebaseConstants.postsKey)
         .doc(postId)
         .collection(FirebaseConstants.repliesCollection)
         .get();
 
     final tagsCollection = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
+        .collection(FirebaseConstants.postsKey)
         .doc(postId)
         .collection(FirebaseConstants.tagsCollection)
         .get();
 
     final imagesCollection = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
+        .collection(FirebaseConstants.postsKey)
         .doc(postId)
         .collection(FirebaseConstants.imagesCollection)
         .get();
@@ -63,7 +63,7 @@ class PostDetailsDataSourceImpl implements PostDetailsDataSource {
   @override
   Future<void> addReplyToPost(AddReplyRequest request, String postId) async {
     final replies = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
+        .collection(FirebaseConstants.postsKey)
         .doc(postId)
         .collection(FirebaseConstants.repliesCollection);
     final replyRef = replies.doc();

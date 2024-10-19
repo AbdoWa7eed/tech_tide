@@ -5,35 +5,39 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 
 class LikePostButton extends StatefulWidget {
-  const LikePostButton({super.key, this.onPressed});
-  final Function(bool isLiked)? onPressed;
+  const LikePostButton(
+      {super.key, this.onPressed, required this.likes, required this.isLiked});
+
+  final Function()? onPressed;
+  final int likes;
+  final bool isLiked;
 
   @override
   State<LikePostButton> createState() => _LikePostButtonState();
 }
 
 class _LikePostButtonState extends State<LikePostButton> {
-  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
         setState(() {
-          isLiked = !isLiked;
-          widget.onPressed?.call(isLiked);
+          widget.onPressed?.call();
         });
       },
       icon: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
-            isLiked ? Icons.favorite_outlined : Icons.favorite_border_rounded,
+            widget.isLiked
+                ? Icons.favorite_outlined
+                : Icons.favorite_border_rounded,
             size: AppSize.s22,
-            color: isLiked ? ColorManager.error : null,
+            color: widget.isLiked ? ColorManager.error : null,
           ),
           const SizedBox(width: AppSize.s12), // Spacing
           Text(
-            "120 ${AppStrings.likes.translate}",
+            "${widget.likes} ${AppStrings.likes.translate}",
           ),
         ],
       ),

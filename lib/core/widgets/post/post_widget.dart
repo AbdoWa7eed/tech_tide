@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tech_tide/core/entities/post_entity.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/routes/routes_manager.dart';
@@ -7,7 +8,9 @@ import 'package:tech_tide/core/widgets/post/post_action_buttons.dart';
 import 'package:tech_tide/core/widgets/post/post_header_widget.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  const PostWidget({super.key, required this.post});
+
+  final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +18,28 @@ class PostWidget extends StatelessWidget {
       onTap: () {
         context.push(Routes.postDetailsRoute);
       },
-      child: const Card(
+      child: Card(
         color: ColorManager.white,
         elevation: AppSize.s2,
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.p12,
             vertical: AppPadding.p12,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PostHeaderWidget(
-                title: 'C++ in a nutshell',
-                imageUrl: 'https://i.pravatar.cc/300',
-                subTitle: "Mohammed",
-              ),
-              SizedBox(height: AppSize.s16),
+              PostHeaderWidget(post: post),
+              const SizedBox(height: AppSize.s16),
               Text(
-                'So, i have been using c++ for a whole decade now,'
-                ' if you guys know how to break the boring feeling of c++ into '
-                'something more interesting, please let me know. '
-                'I would love to learn more about it.',
+                post.content,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
-              SizedBox(height: AppSize.s16),
-              PostActionButtons(),
+              const SizedBox(height: AppSize.s16),
+              PostActionButtons(
+                post: post,
+              ),
             ],
           ),
         ),

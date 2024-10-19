@@ -13,9 +13,12 @@ class UserResponseModel {
   final int? likesCount;
   final int? postsCount;
   final int? repliesCount;
+  @JsonKey(includeFromJson: false)
+  List<String>? savedPosts;
 
   UserResponseModel(
-      {required this.userId,
+      {this.savedPosts,
+      required this.userId,
       required this.bio,
       required this.email,
       required this.imageUrl,
@@ -27,4 +30,30 @@ class UserResponseModel {
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) =>
       _$UserResponseModelFromJson(json);
+
+  UserResponseModel copyWith({
+    String? userId,
+    String? bio,
+    String? email,
+    String? imageUrl,
+    String? username,
+    bool? status,
+    int? likesCount,
+    int? postsCount,
+    int? repliesCount,
+    List<String>? savedPosts,
+  }) {
+    return UserResponseModel(
+      userId: userId ?? this.userId,
+      savedPosts: savedPosts ?? this.savedPosts,
+      bio: bio ?? this.bio,
+      email: email ?? this.email,
+      imageUrl: imageUrl ?? this.imageUrl,
+      username: username ?? this.username,
+      status: status ?? this.status,
+      likesCount: likesCount ?? this.likesCount,
+      postsCount: postsCount ?? this.postsCount,
+      repliesCount: repliesCount ?? this.repliesCount,
+    );
+  }
 }

@@ -4,7 +4,7 @@ import 'package:tech_tide/core/data/models/post/post_response_model.dart';
 import 'package:tech_tide/core/network/firebase_constants.dart';
 
 abstract class PopularTopicDataSource {
-  Future<List<PostResponseModel>> getTopicPosts(String topicId);
+  Stream<List<PostResponseModel>> getTopicPosts(String topicId);
 }
 
 class PopularTopicDataSourceImpl implements PopularTopicDataSource {
@@ -14,17 +14,29 @@ class PopularTopicDataSourceImpl implements PopularTopicDataSource {
   PopularTopicDataSourceImpl(this._firebaseFirestore, this._postsDataSource);
 
   @override
-  Future<List<PostResponseModel>> getTopicPosts(String topicId) async {
-    final topic = await _firebaseFirestore
+  Stream<List<PostResponseModel>> getTopicPosts(String topicId) {
+    return _firebaseFirestore
         .collection(FirebaseConstants.tagsCollection)
         .doc(topicId)
-        .get();
-    final query = _firebaseFirestore
-        .collection(FirebaseConstants.postsCollectionOrField)
-        .where(FirebaseConstants.postIdField,
-            arrayContains:
-                topic.data()?[FirebaseConstants.postsCollectionOrField]);
-    final posts = await _postsDataSource.getPosts(query);
-    return posts;
+        .snapshots()
+        .asyncExpand((topicSnapshot) {
+      final topicData = topicSnapshot.data();
+      if (topicData == null) {
+        return Stream.value([]);
+      }
+
+      final postIds = topicData[FirebaseConstants.postsKey] as List<dynamic>?;
+      if (postIds == null || postIds.isEmpty) {
+        return Stream.value([]);
+      }
+
+      final query = _firebaseFirestore
+          .collection(FirebaseConstants.postsKey)
+          .where(FirebaseConstants.postIdField, whereIn: postIds);
+
+      final postsStream = _postsDataSource.getPosts(query);
+
+      return postsStream;
+    });
   }
 }

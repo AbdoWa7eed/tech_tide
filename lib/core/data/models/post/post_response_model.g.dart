@@ -14,9 +14,9 @@ PostResponseModel _$PostResponseModelFromJson(Map<String, dynamic> json) =>
       user: json['user'] == null
           ? null
           : UserResponseModel.fromJson(json['user'] as Map<String, dynamic>),
-      likes: (json['likes'] as num?)?.toInt(),
+      likes:
+          (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList(),
       replies: (json['replies'] as num?)?.toInt(),
-      views: (json['views'] as num?)?.toInt(),
       createdAt: _$JsonConverterFromJson<Timestamp, DateTime>(
           json['createdAt'], const TimestampConverter().fromJson),
     );

@@ -5,16 +5,24 @@ import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 
 class SavedPostButton extends StatefulWidget {
-  const SavedPostButton({super.key, this.onPressed});
+  const SavedPostButton(
+      {super.key, this.onPressed, required this.initialValue});
 
   final Function(bool isSaved)? onPressed;
+  final bool initialValue;
 
   @override
   State<SavedPostButton> createState() => _SavedPostButtonState();
 }
 
 class _SavedPostButtonState extends State<SavedPostButton> {
-  bool isSaved = false;
+  late bool isSaved;
+
+  @override
+  void initState() {
+    isSaved = widget.initialValue;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

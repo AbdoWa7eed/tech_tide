@@ -5,7 +5,7 @@ import 'package:tech_tide/core/utils/local_manager.dart';
 
 const String _prefsKeyLanguage = "PREFS_KEY_LANG";
 
-const String _prefsKeyUserId = "PREFS_KEY_USER_ID";
+const String _prefsKeyOnboarding = "PREFS_KEY_ONBOARDING";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -25,11 +25,11 @@ class AppPreferences {
     await _sharedPreferences.setString(_prefsKeyLanguage, language.value);
   }
 
-  Future<void> setUserId(String userId) async {
-    await _sharedPreferences.setString(_prefsKeyUserId, userId);
+  Future<void> setOnBoardingViewed() async {
+    await _sharedPreferences.setBool(_prefsKeyOnboarding, true);
   }
 
-  String? getUserId() {
-    return _sharedPreferences.getString(_prefsKeyUserId);
+  bool get isOnBoardingViewed {
+    return _sharedPreferences.getBool(_prefsKeyOnboarding) ?? false;
   }
 }

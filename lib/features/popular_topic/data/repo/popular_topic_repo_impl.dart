@@ -12,12 +12,20 @@ class PopularTopicRepositoryImpl implements PopularTopicRepository {
   PopularTopicRepositoryImpl(this._popularTopicDetailsDataSource);
 
   @override
-  ResultFuture<List<PostEntity>> getTopicPosts(String topicId) async {
+  ResultStream<List<PostEntity>> getTopicPosts(String topicId) {
     try {
-      final response =
-          await _popularTopicDetailsDataSource.getTopicPosts(topicId);
-      final posts = response.map((post) => post.toEntity()).toList();
-      return Right(posts);
+      final responseStream =
+          _popularTopicDetailsDataSource.getTopicPosts(topicId);
+
+      final resultStream = responseStream.map((postResponses) {
+        return postResponses
+            .map((postResponse) => postResponse.toEntity())
+            .toList();
+      }).handleError((error) {
+        return Left(ErrorHandler.handleException(error));
+      });
+
+      return Right(resultStream);
     } catch (e) {
       return Left(ErrorHandler.handleException(e));
     }

@@ -14,11 +14,15 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl(this._homeDataSource);
 
   @override
-  ResultFuture<List<PostEntity>> getTrendingPosts() async {
+  ResultStream<List<PostEntity>> getTrendingPosts() {
     try {
-      final response = await _homeDataSource.getTrendingPosts();
-      final posts = response.map((post) => post.toEntity()).toList();
-      return Right(posts);
+      final result = _homeDataSource.getTrendingPosts().map((posts) {
+        final postEntities = posts.map((post) => post.toEntity()).toList();
+        return postEntities;
+      }).handleError((error) {
+        return Left(ErrorHandler.handleException(error));
+      });
+      return Right(result);
     } catch (e) {
       return Left(ErrorHandler.handleException(e));
     }

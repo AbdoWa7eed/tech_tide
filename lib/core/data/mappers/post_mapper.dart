@@ -15,9 +15,8 @@ extension PostMapper on PostResponseModel {
       title: title.orEmpty(),
       content: content.orEmpty(),
       user: user!.toEntity(),
-      likes: likes.orZero().toInt(),
+      likes: likes ?? [],
       replies: replies.orZero().toInt(),
-      views: views.orZero().toInt(),
       createdAt: createdAt ?? DateTime.now(),
     );
   }

@@ -59,16 +59,31 @@ abstract class RouteGenerator {
       GoRoute(
         path: Routes.homeRoute,
         builder: (context, state) {
-          ServiceLocator.initHome();
-          return ChangeNotifierProvider<LayoutController>(
-              create: (context) => ServiceLocator.get(),
-              child: const HomeLayout());
+          ServiceLocator.initHomeLayout();
+          return MultiBlocProvider(providers: [
+            BlocProvider<ManagePostCubit>(
+                create: (context) => ServiceLocator.get()),
+            BlocProvider<LayoutCubit>(
+                create: (context) => ServiceLocator.get()..loadUser()),
+            BlocProvider<HomeCubit>(
+                create: (context) => ServiceLocator.get()..loadHome()),
+          ], child: const HomeLayout());
         },
       ),
       GoRoute(
         path: Routes.popularTopicsRoute,
         pageBuilder: (context, state) {
-          return CustomSlideTransition(child: const PopularTopicView());
+          ServiceLocator.initPopularTopic();
+          final topic = state.extra as String;
+          return CustomSlideTransition(
+            child: MultiBlocProvider(providers: [
+              BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ManagePostCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<PopularTopicCubit>(
+                create: (context) => ServiceLocator.get()..getTopicPosts(topic),
+              ),
+            ], child: const PopularTopicView()),
+          );
         },
       ),
       GoRoute(
