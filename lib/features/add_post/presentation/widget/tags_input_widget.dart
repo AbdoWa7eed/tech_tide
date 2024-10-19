@@ -42,6 +42,10 @@ class _TagsInputWidgetState extends State<TagsInputWidget> {
                     maxLines: 1,
                     hintText: AppStrings.addTags.translate,
                     onSubmit: (value) => _addTag(context),
+                    suffix: IconButton(
+                      onPressed: () => _addTag(context),
+                      icon: const Icon(Icons.add),
+                    ),
                   ),
                   const SizedBox(height: AppSize.s12),
                   Wrap(

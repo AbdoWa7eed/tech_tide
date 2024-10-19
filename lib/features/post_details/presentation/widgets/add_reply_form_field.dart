@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
@@ -38,21 +40,17 @@ class AddReplyFormField extends StatelessWidget {
             ),
             const SizedBox(width: AppSize.s12),
             IconButton(
-              onPressed: () {},
-              style: IconButton.styleFrom(
-                backgroundColor: ColorManager.primary,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppSize.s8),
+                onPressed: () {},
+                style: IconButton.styleFrom(
+                  backgroundColor: ColorManager.primary,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(AppSize.s8),
+                    ),
                   ),
+                  maximumSize: const Size(AppSize.s40, AppSize.s40),
                 ),
-                maximumSize: const Size(AppSize.s40, AppSize.s40),
-              ),
-              icon: const Icon(
-                Icons.send,
-                color: ColorManager.white,
-              ),
-            ),
+                icon: SvgPicture.asset(AssetsManager.sendIcon)),
           ],
         ),
       ),

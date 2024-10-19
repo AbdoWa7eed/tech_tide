@@ -31,6 +31,7 @@ abstract class AppStrings {
   static const String showMore = 'showMore';
   static const String showLess = 'showLess';
   static const String replies = 'replies';
+  static const String likes = 'likes';
   static const String addReply = 'addReply';
   static const String createPost = 'createPost';
   static const String title = 'title';
@@ -39,4 +40,8 @@ abstract class AppStrings {
   static const String addContent = 'addContent';
   static const String tags = 'tags';
   static const String addTags = 'addTags';
+  static const String passwordDontMatch = 'passwordDontMatch';
+  static const String fieldsRequired = 'fieldsRequired';
+  static const String mustBeAtLeast6Chars = 'mustBeAtLeast6Chars';
+  static const String invalidEmailInput = 'invalidEmailInput';
 }

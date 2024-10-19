@@ -31,17 +31,15 @@ class LabeledTextField extends StatelessWidget {
               color: ColorManager.black,
             )),
         const SizedBox(height: AppSize.s4),
-        SizedBox(
-          height: AppSize.s50,
-          child: TextFormField(
-            controller: controller,
-            validator: validator,
-            obscureText: isObscure,
-            style: StylesManager.regular16,
-            decoration: InputDecoration(
-              suffixIcon: suffix,
-              hintText: hintText,
-            ),
+        TextFormField(
+          controller: controller,
+          validator: validator,
+          obscureText: isObscure,
+          style: StylesManager.regular16,
+          decoration: InputDecoration(
+            constraints: const BoxConstraints(minHeight: AppSize.s50),
+            suffixIcon: suffix,
+            hintText: hintText,
           ),
         )
       ],

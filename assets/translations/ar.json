@@ -49,4 +49,9 @@
   "addContent" : "اضافة المحتوى",
   "tags" : "الوسوم",
   "addTag" : "اضافة وسم ...",
+  "passwordDontMatch" : "كلمة المرور غير متطابقة.",
+  "fieldsRequired" : "هذا الحقل مطلوب",
+  "mustBeAtLeast6Chars": "يجب أن يكون على الأقل 6 حروف.",
+  "invalidEmailInput" : "البريد الإلكتروني غير صالح.",
+  "likes": "اعجابات"
 }
