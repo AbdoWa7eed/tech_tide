@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
+import 'package:tech_tide/features/add_post/presentation/cubit/add_post_cubit.dart';
 import 'package:tech_tide/features/add_post/presentation/views/add_post_view.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 
@@ -104,11 +106,14 @@ class CustomNavBarWidget extends StatelessWidget {
   }
 
   void _showAddPostBottomSheet(BuildContext context) {
+    ServiceLocator.initAddPost();
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (context) {
-        return const AddPostView();
+        return BlocProvider<AddPostCubit>(
+            create: (context) => ServiceLocator.get(),
+            child: const AddPostView());
       },
     );
   }

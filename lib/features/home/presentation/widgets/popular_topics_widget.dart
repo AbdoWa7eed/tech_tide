@@ -40,7 +40,7 @@ class PopularTopicsWidget extends StatelessWidget {
                     topic: state.popularTopics[index],
                   );
                 },
-                itemCount: state.trendingPosts.length,
+                itemCount: state.popularTopics.length,
                 separatorBuilder: (context, index) => const SizedBox(
                   width: AppSize.s8,
                 ),

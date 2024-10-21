@@ -25,7 +25,7 @@ class PostRepliesWidget extends StatelessWidget {
             builder: (context, state) {
           final replies = context.read<PostDetailsCubit>().post.replies;
           if (replies.isEmpty) {
-            return const EmptyViewWidget();
+            return EmptyViewWidget(text: AppStrings.noReplies.translate);
           }
           return ListView.separated(
             physics: const NeverScrollableScrollPhysics(),

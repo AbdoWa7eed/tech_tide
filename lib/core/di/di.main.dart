@@ -13,6 +13,7 @@ abstract class ServiceLocator {
       ..registerLazySingleton<AppPreferences>(
           () => AppPreferences(sharedPreferences))
       ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+      ..registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance)
       ..registerLazySingleton<FirebaseFirestore>(
           () => FirebaseFirestore.instance);
   }
@@ -86,8 +87,10 @@ abstract class ServiceLocator {
         ..registerLazySingleton<PopularTopicRepository>(
             () => PopularTopicRepositoryImpl(_getIt()));
     }
-    _getIt
-        .registerFactory<PopularTopicCubit>(() => PopularTopicCubit(_getIt()));
+    if (!_getIt.isRegistered<PopularTopicCubit>()) {
+      _getIt.registerFactory<PopularTopicCubit>(
+          () => PopularTopicCubit(_getIt()));
+    }
   }
 
   static initPostDetails() {
@@ -98,6 +101,22 @@ abstract class ServiceLocator {
         ..registerLazySingleton<PostDetailsRepository>(
             () => PostDetailsRepositoryImpl(_getIt()));
     }
-    _getIt.registerFactory<PostDetailsCubit>(() => PostDetailsCubit(_getIt()));
+    if (!_getIt.isRegistered<PostDetailsCubit>()) {
+      _getIt
+          .registerFactory<PostDetailsCubit>(() => PostDetailsCubit(_getIt()));
+    }
+  }
+
+  static initAddPost() {
+    if (!_getIt.isRegistered<AddPostRepository>()) {
+      _getIt
+        ..registerLazySingleton<AddPostDataSource>(
+            () => AddPostDataSourceImpl(_getIt(), _getIt(), _getIt()))
+        ..registerLazySingleton<AddPostRepository>(
+            () => AddPostRepositoryImpl(_getIt()));
+    }
+    if (!_getIt.isRegistered<AddPostCubit>()) {
+      _getIt.registerFactory<AddPostCubit>(() => AddPostCubit(_getIt()));
+    }
   }
 }

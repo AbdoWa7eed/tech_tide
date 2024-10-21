@@ -24,7 +24,10 @@ class PostDetailsWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PostHeaderWidget(post: postDetails.post),
+            PostHeaderWidget(
+              post: postDetails.post,
+              isDetails: true,
+            ),
             const SizedBox(height: AppSize.s16),
             PostContentWidget(
               post: postDetails.post,

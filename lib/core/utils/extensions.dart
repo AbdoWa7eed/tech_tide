@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tech_tide/core/di/di.dart';
+import 'package:tech_tide/core/utils/app_preferences.dart';
 
 extension NavigationExtension on BuildContext {
   void popAllThenPush(String location, {Object? extra}) {
@@ -43,16 +45,19 @@ extension DateTimeExtension on DateTime {
 
     if (difference.inDays == 0) {
       if (difference.inHours == 0) {
-        return '${difference.inMinutes}m ago';
+        return 'minutes_ago'.tr(args: [difference.inMinutes.toString()]);
       } else {
-        return '${difference.inHours}h ago';
+        return 'hours_ago'.tr(args: [difference.inHours.toString()]);
       }
     } else if (difference.inDays == 1) {
-      return '1 day ago';
+      return 'yesterday'.tr();
     } else if (difference.inDays < 7) {
-      return '${difference.inDays} days ago';
+      return 'days_ago'.tr(args: [difference.inDays.toString()]);
     } else {
-      return DateFormat('MMM d, yyyy').format(this);
+      final appPreferences = ServiceLocator.get<AppPreferences>();
+      return DateFormat.yMMMd(appPreferences.getAppLocal().languageCode)
+          .format(this);
     }
   }
 }
+

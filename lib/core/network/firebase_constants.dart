@@ -12,4 +12,6 @@ abstract class FirebaseConstants {
   static const String postIdField = "postId";
   static const String replyIdField = "replyId";
   static const String createdAtField = "createdAt";
+  static const String imageUrlField = "imageUrl";
+  static const String tagField = "tag";
 }

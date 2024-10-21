@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/features/post_details/domain/entities/post_details_entity.dart';
@@ -13,6 +15,8 @@ class PostDetailsCubit extends Cubit<PostDetailsState> {
 
   late PostDetailsEntity _post;
 
+  late StreamSubscription<PostDetailsEntity> _postSubscription;
+
   PostDetailsEntity get post => _post;
 
   void initPostDetails(String postId) {
@@ -26,9 +30,9 @@ class PostDetailsCubit extends Cubit<PostDetailsState> {
     result.fold(
       (failure) => emit(PostDetailsError(failure.message)),
       (postStream) {
-        postStream.listen(
-          (event) {
-            _post = event;
+        _postSubscription = postStream.listen(
+          (post) {
+            _post = post;
             emit(PostDetailsLoaded());
           },
         );
@@ -57,6 +61,7 @@ class PostDetailsCubit extends Cubit<PostDetailsState> {
   @override
   Future<void> close() {
     ServiceLocator.unregister<PostDetailsCubit>();
+    _postSubscription.cancel();
     return super.close();
   }
 }

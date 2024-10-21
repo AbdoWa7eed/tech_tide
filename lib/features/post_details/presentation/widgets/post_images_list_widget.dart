@@ -9,8 +9,8 @@ class PostImagesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = context.read<PostDetailsCubit>().post.images;
     return Builder(builder: (context) {
+      final images = context.read<PostDetailsCubit>().post.images;
       if (images.isEmpty) {
         return const SizedBox.shrink();
       }

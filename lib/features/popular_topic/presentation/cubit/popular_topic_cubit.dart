@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/core/entities/post_entity.dart';
@@ -10,6 +12,8 @@ class PopularTopicCubit extends Cubit<PopularTopicState> {
 
   final PopularTopicRepository _repository;
 
+  late StreamSubscription<List<PostEntity>> _postSubscription;
+
   late final String topic;
 
   getTopicPosts(String topic) {
@@ -19,7 +23,7 @@ class PopularTopicCubit extends Cubit<PopularTopicState> {
     result.fold(
       (failure) => emit(PopularTopicError(failure.message)),
       (posts) {
-        posts.listen(
+        _postSubscription = posts.listen(
           (posts) => emit(PopularTopicLoaded(posts)),
         );
       },
@@ -29,6 +33,7 @@ class PopularTopicCubit extends Cubit<PopularTopicState> {
   @override
   Future<void> close() {
     ServiceLocator.unregister<PopularTopicCubit>();
+    _postSubscription.cancel();
     return super.close();
   }
 }
