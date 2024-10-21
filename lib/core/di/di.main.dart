@@ -89,4 +89,15 @@ abstract class ServiceLocator {
     _getIt
         .registerFactory<PopularTopicCubit>(() => PopularTopicCubit(_getIt()));
   }
+
+  static initPostDetails() {
+    if (!_getIt.isRegistered<PostDetailsRepository>()) {
+      _getIt
+        ..registerLazySingleton<PostDetailsDataSource>(
+            () => PostDetailsDataSourceImpl(_getIt(), _getIt(), _getIt()))
+        ..registerLazySingleton<PostDetailsRepository>(
+            () => PostDetailsRepositoryImpl(_getIt()));
+    }
+    _getIt.registerFactory<PostDetailsCubit>(() => PostDetailsCubit(_getIt()));
+  }
 }

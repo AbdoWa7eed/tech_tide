@@ -27,11 +27,11 @@ extension ReplyMapper on ReplyResponseModel {
       throw Failure(message: ErrorMessages.unexpectedError.translate);
     }
     return ReplyEntity(
-      replyId: replyId,
-      content: content,
-      likes: likes,
+      replyId: replyId.orEmpty(),
+      content: content.orEmpty(),
+      likes: likes ?? [],
       user: user!.toEntity(),
-      createdAt: createdAt,
+      createdAt: createdAt ?? DateTime.now(),
     );
   }
 }

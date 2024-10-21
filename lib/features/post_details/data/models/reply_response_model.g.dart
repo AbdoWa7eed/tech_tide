@@ -10,7 +10,8 @@ ReplyResponseModel _$ReplyResponseModelFromJson(Map<String, dynamic> json) =>
     ReplyResponseModel(
       replyId: json['replyId'] as String?,
       content: json['content'] as String?,
-      likes: (json['likes'] as num?)?.toInt(),
+      likes:
+          (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList(),
       user: json['user'] == null
           ? null
           : UserResponseModel.fromJson(json['user'] as Map<String, dynamic>),

@@ -24,5 +24,9 @@ import 'package:tech_tide/features/popular_topic/data/data_source/popular_topic_
 import 'package:tech_tide/features/popular_topic/data/repo/popular_topic_repo_impl.dart';
 import 'package:tech_tide/features/popular_topic/domain/repo/popular_topic_repo.dart';
 import 'package:tech_tide/features/popular_topic/presentation/cubit/popular_topic_cubit.dart';
+import 'package:tech_tide/features/post_details/data/data_source/post_details_data_source.dart';
+import 'package:tech_tide/features/post_details/data/repo/post_details_repo_impl.dart';
+import 'package:tech_tide/features/post_details/domain/repo/post_details_repo.dart';
+import 'package:tech_tide/features/post_details/presentation/cubit/post_details_cubit.dart';
 
 part 'di.main.dart';

@@ -16,3 +16,5 @@ class LayoutError extends LayoutState {
   final String message;
   LayoutError(this.message);
 }
+
+class ChangeNavBarIndexState extends LayoutState {}

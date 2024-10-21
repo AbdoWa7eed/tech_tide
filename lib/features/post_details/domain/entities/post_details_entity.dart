@@ -16,11 +16,11 @@ class PostDetailsEntity {
 }
 
 class ReplyEntity {
-  final String? replyId;
-  final String? content;
-  final int? likes;
-  final UserEntity? user;
-  final DateTime? createdAt;
+  final String replyId;
+  final String content;
+  final List<String> likes;
+  final UserEntity user;
+  final DateTime createdAt;
 
   ReplyEntity({
     required this.replyId,

@@ -9,7 +9,7 @@ part 'reply_response_model.g.dart';
 class ReplyResponseModel {
   final String? replyId;
   final String? content;
-  final int? likes;
+  final List<String>? likes;
   final UserResponseModel? user;
   @TimestampConverter()
   final DateTime? createdAt;
@@ -27,7 +27,7 @@ class ReplyResponseModel {
   ReplyResponseModel copyWith(
       {String? replyId,
       String? content,
-      int? likes,
+      List<String>? likes,
       UserResponseModel? user,
       DateTime? createdAt}) {
     return ReplyResponseModel(

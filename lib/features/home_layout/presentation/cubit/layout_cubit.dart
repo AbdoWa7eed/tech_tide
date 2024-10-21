@@ -19,7 +19,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     if (index != 2) {
       pageController.jumpToPage(index);
     }
-    emit(state);
+    emit(ChangeNavBarIndexState());
   }
 
   int get index => _currentIndex;

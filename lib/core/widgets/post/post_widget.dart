@@ -16,7 +16,7 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.postDetailsRoute);
+        context.push(Routes.postDetailsRoute, extra: post.id);
       },
       child: Card(
         color: ColorManager.white,
