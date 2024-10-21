@@ -4,7 +4,9 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/features/post_details/presentation/views/full_screen_image_view.dart';
 
 class PostImageWidget extends StatelessWidget {
-  const PostImageWidget({super.key});
+  const PostImageWidget({super.key, required this.imageUrl});
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class PostImageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppSize.s12),
           color: ColorManager.primaryWith10Opacity,
         ),
-        child: Image.network("https://i.pravatar.cc/400"),
+        child: Image.network(imageUrl),
       ),
     );
   }
@@ -29,8 +31,7 @@ class PostImageWidget extends StatelessWidget {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const FullScreenImageView(
-              imageUrl: "https://i.pravatar.cc/400");
+          return FullScreenImageView(imageUrl: imageUrl);
         });
   }
 }

@@ -68,7 +68,7 @@ class CustomNavBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LayoutCubit, LayoutState>(
       builder: (context, state) {
-        if (state is! LayoutLoaded) {
+        if (state is! LayoutLoaded && state is! ChangeNavBarIndexState) {
           return const SizedBox.shrink();
         }
         final cubit = context.read<LayoutCubit>();

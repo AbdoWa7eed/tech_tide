@@ -89,7 +89,18 @@ abstract class RouteGenerator {
       GoRoute(
         path: Routes.postDetailsRoute,
         pageBuilder: (context, state) {
-          return CustomSlideTransition(child: const PostDetailsView());
+          final postId = state.extra as String;
+          ServiceLocator.initPostDetails();
+          return CustomSlideTransition(
+            child: MultiBlocProvider(providers: [
+              BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ManagePostCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<PostDetailsCubit>(
+                create: (context) =>
+                    ServiceLocator.get()..initPostDetails(postId),
+              ),
+            ], child: const PostDetailsView()),
+          );
         },
       ),
     ];

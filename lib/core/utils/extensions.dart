@@ -35,3 +35,24 @@ extension NumExtension on num? {
     return this == null ? 0 : this!;
   }
 }
+
+extension DateTimeExtension on DateTime {
+  String get timeAgo {
+    final now = DateTime.now();
+    final difference = now.difference(this);
+
+    if (difference.inDays == 0) {
+      if (difference.inHours == 0) {
+        return '${difference.inMinutes}m ago';
+      } else {
+        return '${difference.inHours}h ago';
+      }
+    } else if (difference.inDays == 1) {
+      return '1 day ago';
+    } else if (difference.inDays < 7) {
+      return '${difference.inDays} days ago';
+    } else {
+      return DateFormat('MMM d, yyyy').format(this);
+    }
+  }
+}

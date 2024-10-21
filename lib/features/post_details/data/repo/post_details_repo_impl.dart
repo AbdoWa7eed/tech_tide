@@ -13,21 +13,31 @@ class PostDetailsRepositoryImpl implements PostDetailsRepository {
   PostDetailsRepositoryImpl(this._postDetailsDataSource);
 
   @override
-  ResultFuture<PostDetailsEntity> getPostDetails(String postId) async {
+  ResultStream<PostDetailsEntity> getPostDetails(String postId) {
     try {
-      final response = await _postDetailsDataSource.getPostDetails(postId);
-      final postEntity = response.toEntity();
-      return Right(postEntity);
+      final response = _postDetailsDataSource.getPostDetails(postId);
+      final postStream = response.map((post) => post.toEntity());
+      return Right(postStream);
     } catch (e) {
       return Left(ErrorHandler.handleException(e));
     }
   }
 
   @override
-  ResultFuture<void> addReplyToPost(
-      AddReplyRequest request, String postId) async {
+  ResultFuture<void> addReplyToPost(String content, String postId) async {
     try {
-      await _postDetailsDataSource.addReplyToPost(request, postId);
+      await _postDetailsDataSource.addReplyToPost(
+          AddReplyRequest(content: content), postId);
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorHandler.handleException(e));
+    }
+  }
+
+  @override
+  ResultFuture<void> toggleLikeReply(String postId, String replyId) async {
+    try {
+      await _postDetailsDataSource.toggleLikeReply(postId, replyId);
       return const Right(null);
     } catch (e) {
       return Left(ErrorHandler.handleException(e));

@@ -11,6 +11,7 @@ import 'package:tech_tide/features/home_layout/presentation/views/home_layout.da
 import 'package:tech_tide/features/manage_post/presentation/cubit/manage_post_cubit.dart';
 import 'package:tech_tide/features/onboarding/views/onboarding_view.dart';
 import 'package:tech_tide/features/popular_topic/presentation/cubit/popular_topic_cubit.dart';
+import 'package:tech_tide/features/post_details/presentation/cubit/post_details_cubit.dart';
 import 'package:tech_tide/features/splash/presentation/splash_view.dart';
 
 import '../../features/event_details/presentation/views/event_details_view.dart';
