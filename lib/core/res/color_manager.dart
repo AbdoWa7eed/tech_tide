@@ -12,6 +12,7 @@ abstract class ColorManager {
   static const Color lightGray = Color(0xffD3D3D3);
   static const Color paleBlue = Color(0xffB1C0E3);
   static const Color babyBlue = Color(0xffEBF5F8);
+  static const Color babyBlue2 = Color(0xFFB0E6FF);
   static const Gradient gradientColor = LinearGradient(
     begin: AlignmentDirectional.centerStart,
     end: AlignmentDirectional.centerEnd,
