@@ -35,6 +35,8 @@ abstract class AppSize {
   static const double s80 = 80.0;
   static const double s100 = 100.0;
   static const double s140 = 140.0;
+  static const double s160 = 160.0;
+  static const double s250 = 250.0;
 }
 
 abstract class AppMargin {
