@@ -9,6 +9,7 @@ abstract class Routes {
   static const String popularTopicsRoute = '/popular-topics';
   static const String postDetailsRoute = '/post-details';
   static const String eventDetailsRoute = '/event-details';
+  static const String chatRoute = '/chat';
 }
 
 abstract class RouteGenerator {
@@ -103,6 +104,18 @@ abstract class RouteGenerator {
           return CustomSlideTransition(
             child: const EventDetailsView(),
           );
+        },
+      ),
+      GoRoute(
+        path: Routes.chatRoute,
+        pageBuilder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          final String chatuser = extra['chatuser'] as String;
+          final String currentUserId = extra['currentUserId'] as String;
+          final ChatResponseModel chat = extra['chat'] as ChatResponseModel;
+          return CustomSlideTransition(
+              child: ChatPage(chatuserID: chatuser,currentUserId: currentUserId, chat: chat));
         },
       ),
     ];

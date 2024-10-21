@@ -11,4 +11,5 @@ abstract class AssetsManager {
   static const String sendIcon = 'assets/images/send.svg';
   static const String errorJson = 'assets/animations/error.json';
   static const String userImagePlaceholder = 'assets/images/user.png';
+  static const String sendButtonIcon = 'assets/images/sendbutton.png';
 }
