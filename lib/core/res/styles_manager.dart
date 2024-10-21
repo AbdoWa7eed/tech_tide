@@ -37,6 +37,13 @@ abstract class StylesManager {
     color: ColorManager.deepTeal,
     fontWeight: FontWeightManager.medium,
   );
+
+  static const TextStyle medium20 = TextStyle(
+    fontSize: FontSize.s20,
+    color: ColorManager.black,
+    fontWeight: FontWeightManager.medium,
+  );
+
   static const TextStyle medium22 = TextStyle(
     fontSize: FontSize.s22,
     color: ColorManager.black,

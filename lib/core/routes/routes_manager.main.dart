@@ -18,12 +18,6 @@ abstract class RouteGenerator {
   static List<GoRoute> get _routes {
     return [
       GoRoute(
-        path: Routes.eventDetailsRoute,
-        builder: (context, state) {
-          return const EventDetailsView();
-        },
-      ),
-      GoRoute(
         path: Routes.initialRoute,
         builder: (context, state) {
           return const SplashView();
@@ -100,6 +94,14 @@ abstract class RouteGenerator {
                     ServiceLocator.get()..initPostDetails(postId),
               ),
             ], child: const PostDetailsView()),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.eventDetailsRoute,
+        pageBuilder: (context, state) {
+          return CustomSlideTransition(
+            child: const EventDetailsView(),
           );
         },
       ),

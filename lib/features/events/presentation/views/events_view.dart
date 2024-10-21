@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/widgets/gradiant_app_bar.dart';
-import '../widgets/card_view.dart';
+import 'package:tech_tide/core/res/strings_manager.dart';
+import 'package:tech_tide/core/utils/extensions.dart';
+import 'package:tech_tide/core/widgets/gradiant_app_bar.dart';
+import 'package:tech_tide/features/events/presentation/widgets/events_view_body.dart';
 
 class EventsView extends StatelessWidget {
   const EventsView({super.key});
@@ -9,14 +10,8 @@ class EventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GradientAppBar(title: 'Events'),
-      body: ListView(
-        children: const [
-          EventCard(),
-          EventCard(),
-        ],
-      ),
+      appBar: GradientAppBar(title: AppStrings.events.translate),
+      body: const EventsViewBody(),
     );
-
   }
 }
