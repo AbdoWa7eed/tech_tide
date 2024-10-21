@@ -1,9 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tech_tide/core/data/data_source/posts_data_source.dart';
 import 'package:tech_tide/core/utils/app_preferences.dart';
+import 'package:tech_tide/features/add_post/data/data_source/add_post_data_source.dart';
+import 'package:tech_tide/features/add_post/data/repo/add_post_repo_impl.dart';
+import 'package:tech_tide/features/add_post/domain/repo/add_post_repo.dart';
+import 'package:tech_tide/features/add_post/presentation/cubit/add_post_cubit.dart';
 import 'package:tech_tide/features/auth/data/data_source/auth_data_source.dart';
 import 'package:tech_tide/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:tech_tide/features/auth/domain/repo/auth_repository.dart';

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/entities/post_entity.dart';
@@ -16,6 +18,8 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        log("HIII I'M TESTINNG");
+
         context.push(Routes.postDetailsRoute, extra: post.id);
       },
       child: Card(

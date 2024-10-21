@@ -43,7 +43,11 @@ class PostDetailsDataSourceImpl implements PostDetailsDataSource {
         .get();
 
     final tags = tagsCollection.docs.map((doc) => doc.id).toList();
-    final images = imagesCollection.docs.map((doc) => doc.id).toList();
+    final images = imagesCollection.docs
+        .map((doc) => doc.data()[FirebaseConstants.imageUrlField] as String?)
+        .where((imageUrl) => imageUrl != null)
+        .cast<String>()
+        .toList();
 
     final repliesStream = _firebaseFirestore
         .collection(FirebaseConstants.postsKey)

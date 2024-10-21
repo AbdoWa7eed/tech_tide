@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
@@ -19,6 +20,9 @@ class AddPostTitleWidget extends StatelessWidget {
       ),
       const SizedBox(height: AppSize.s12),
       CustomWhiteTextField(
+          validator: ValidationBuilder(
+            requiredMessage: AppStrings.fieldsRequired.translate,
+          ).required().build(),
           controller: titleController,
           hintText: AppStrings.addPostTitle.translate)
     ]);

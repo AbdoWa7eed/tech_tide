@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_tide/core/entities/post_entity.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/circled_network_image.dart';
 import 'package:tech_tide/core/widgets/post/saved_post_button.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
@@ -12,9 +13,11 @@ class PostHeaderWidget extends StatelessWidget {
   const PostHeaderWidget({
     super.key,
     required this.post,
+    this.isDetails = false,
   });
 
   final PostEntity post;
+  final bool isDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,12 @@ class PostHeaderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                post.title,
+                isDetails ? post.user.username : post.title,
                 style: StylesManager.medium14,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                post.user.username,
+                isDetails ? post.createdAt.timeAgo : post.user.username,
                 style: StylesManager.regular12,
                 overflow: TextOverflow.ellipsis,
               ),

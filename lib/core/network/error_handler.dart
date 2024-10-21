@@ -37,7 +37,7 @@ abstract class ErrorHandler {
         return Failure(message: ErrorMessages.permissionDenied.translate);
       case 'not-found':
         return Failure(message: ErrorMessages.documentNotFound.translate);
-      case 'already_exists':
+      case 'already-exists':
         return Failure(message: ErrorMessages.documentExists.translate);
       default:
         return Failure(message: ErrorMessages.databaseError.translate);

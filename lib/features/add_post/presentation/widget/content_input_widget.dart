@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
@@ -33,6 +34,9 @@ class ContentInputWidget extends StatelessWidget {
             children: [
               CustomWhiteTextField(
                 controller: contentController,
+                validator: ValidationBuilder(
+                  requiredMessage: AppStrings.fieldsRequired.translate,
+                ).required().build(),
                 borderRadius: 0,
                 minLines: 5,
                 hintText: AppStrings.addContent.translate,

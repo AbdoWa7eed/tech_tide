@@ -59,5 +59,10 @@
   "hi" : "Hi",
   "homeSubtitle" : "Find topics that you like to read",
   "posts" : "Posts",
-  "noContent" : "Currently no content to show."
+  "noContent" : "Currently no content to show.",
+  "minutes_ago": "{} minute(s) ago",
+  "hours_ago": "{} hour(s) ago",
+  "days_ago": "{} day(s) ago",
+  "yesterday": "yesterday",
+  "noReplies" : "No replies have been made yet."
 }

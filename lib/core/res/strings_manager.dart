@@ -50,4 +50,5 @@ abstract class AppStrings {
   static const String homeSubtitle = 'homeSubtitle';
   static const String posts = 'posts';
   static const String noContent = 'noContent';
+  static const String noReplies = 'noReplies';
 }

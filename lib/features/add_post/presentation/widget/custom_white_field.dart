@@ -55,7 +55,7 @@ class CustomWhiteTextField extends StatelessWidget {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: ColorManager.error),
+          borderSide: const BorderSide(color: ColorManager.babyBlue),
         ),
         hintText: hintText,
         fillColor: ColorManager.white,

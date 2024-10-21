@@ -20,34 +20,38 @@ class HomeView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: CustomScrollView(
-        slivers: [
-          const HomeHeaderWidget(),
-          BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              if (state is HomeLoading || state is HomeInitial) {
-                return const SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-              if (state is HomeError) {
-                return SliverFillRemaining(
+      body: RefreshIndicator(
+        onRefresh: () async => context.read<HomeCubit>().loadHome(),
+        displacement: 1,
+        child: CustomScrollView(
+          slivers: [
+            const HomeHeaderWidget(),
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLoading || state is HomeInitial) {
+                  return const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: ErrorViewWidget(error: state.message));
-              }
-              final currentState = state as HomeLoaded;
-              if (currentState.trendingPosts.isEmpty &&
-                  currentState.popularTopics.isEmpty) {
-                return const SliverFillRemaining(
-                    hasScrollBody: false, child: EmptyViewWidget());
-              }
-              return const SliverToBoxAdapter(child: HomeViewBody());
-            },
-          ),
-        ],
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+                if (state is HomeError) {
+                  return SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: ErrorViewWidget(error: state.message));
+                }
+                final currentState = state as HomeLoaded;
+                if (currentState.trendingPosts.isEmpty &&
+                    currentState.popularTopics.isEmpty) {
+                  return const SliverFillRemaining(
+                      hasScrollBody: false, child: EmptyViewWidget());
+                }
+                return const SliverToBoxAdapter(child: HomeViewBody());
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
