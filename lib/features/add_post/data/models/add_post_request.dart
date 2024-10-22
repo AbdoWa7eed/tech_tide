@@ -27,7 +27,7 @@ class AddPostRequest {
       required this.attachedImages,
       this.userId});
 
-  Map<String, dynamic> toJson() => _$AppPostRequestToJson(this);
+  Map<String, dynamic> toJson() => _$AddPostRequestToJson(this);
 
   copyWith(
       {String? title,

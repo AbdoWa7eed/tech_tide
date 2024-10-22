@@ -6,7 +6,7 @@ part of 'add_post_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$AppPostRequestToJson(AddPostRequest instance) =>
+Map<String, dynamic> _$AddPostRequestToJson(AddPostRequest instance) =>
     <String, dynamic>{
       'title': instance.title,
       'content': instance.content,

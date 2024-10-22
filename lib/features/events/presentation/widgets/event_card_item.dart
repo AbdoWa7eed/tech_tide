@@ -3,19 +3,17 @@ import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/routes/routes_manager.dart';
+import 'package:tech_tide/features/events/domain/entities/event_entity.dart';
 import 'package:tech_tide/features/events/presentation/widgets/event_date_widget.dart';
 import 'package:tech_tide/features/events/presentation/widgets/event_favorite_button.dart';
 import 'package:tech_tide/features/events/presentation/widgets/event_image_widget.dart';
 import 'package:tech_tide/features/events/presentation/widgets/event_title_subtitle_widget.dart';
 
-class EventCardItem extends StatefulWidget {
-  const EventCardItem({super.key});
+class EventCardItem extends StatelessWidget {
+  const EventCardItem({super.key, required this.event});
 
-  @override
-  State<EventCardItem> createState() => _EventCardItemState();
-}
+  final EventEntity event;
 
-class _EventCardItemState extends State<EventCardItem> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,24 +28,26 @@ class _EventCardItemState extends State<EventCardItem> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.s16),
           ),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              EventImageWidget(),
+              EventImageWidget(imageUrl: event.imageUrl),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(AppPadding.p8),
+                  padding: const EdgeInsets.all(AppPadding.p8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      EventDate(),
-                      SizedBox(width: AppSize.s12),
+                      EventDate(
+                        dateTime: event.dateTime,
+                      ),
+                      const SizedBox(width: AppSize.s12),
                       Expanded(
-                        child: EventTitleSubtitle(),
+                        child: EventTitleSubtitle(
+                          event: event,
+                        ),
                       ),
-                      FavoriteButton(
-                        isFavorite: false,
-                      ),
+                      FavoriteButton(event: event),
                     ],
                   ),
                 ),

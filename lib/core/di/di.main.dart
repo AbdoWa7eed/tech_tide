@@ -64,6 +64,7 @@ abstract class ServiceLocator {
     }
 
     initHome();
+    initEvents();
   }
 
   static initHome() {
@@ -117,6 +118,19 @@ abstract class ServiceLocator {
     }
     if (!_getIt.isRegistered<AddPostCubit>()) {
       _getIt.registerFactory<AddPostCubit>(() => AddPostCubit(_getIt()));
+    }
+  }
+
+  static initEvents() {
+    if (!_getIt.isRegistered<EventsRepository>()) {
+      _getIt
+        ..registerLazySingleton<EventsDataSource>(
+            () => EventsDataSourceImpl(_getIt(), _getIt()))
+        ..registerLazySingleton<EventsRepository>(
+            () => EventsRepositoryImpl(_getIt()));
+    }
+    if (!_getIt.isRegistered<EventsCubit>()) {
+      _getIt.registerFactory<EventsCubit>(() => EventsCubit(_getIt()));
     }
   }
 }

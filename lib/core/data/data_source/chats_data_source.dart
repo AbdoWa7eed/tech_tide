@@ -1,15 +1,9 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tech_tide/core/data/models/chats/chat_response_model.dart';
-import 'package:tech_tide/core/data/models/chats/chats_response_model.dart';
 import 'package:tech_tide/core/data/models/chats/chats_response_model.dart';
 import 'package:tech_tide/core/data/models/chats/message_response_model.dart';
 import 'package:tech_tide/core/data/models/user/user_response_model.dart';
 import 'package:tech_tide/core/network/firebase_constants.dart';
-import 'package:tech_tide/core/utils/extensions.dart';
-import 'package:tech_tide/core/network/error_messages.dart';
-import 'package:tech_tide/core/network/failure.dart';
 
 abstract class ChatsDataSource {
   Stream<List<ChatResponseModel>> getChatsForUser(String userId);
@@ -24,45 +18,47 @@ class ChatsDataSourceImpl implements ChatsDataSource {
   ChatsDataSourceImpl(this._firebaseFirestore);
 
   @override
-Stream<List<ChatResponseModel>> getChatsForUser(String userId) {
-  // Listen to user chats subcollection
-  final userChatsQuery = _firebaseFirestore
-      .collection(FirebaseConstants.usersCollection)
-      .doc(userId)
-      .collection(FirebaseConstants.chatsCollection)
-      .snapshots();
-
-  return userChatsQuery.asyncExpand((snapshot) {
-    final chatIds = snapshot.docs.map((doc) => doc.id).toList();
-
-    if (chatIds.isEmpty) {
-      return Stream.value([]); // Return an empty list if there are no chats
-    }
-
-    // Listen to changes in chat details
-    final chatDetailsQuery = _firebaseFirestore
+  Stream<List<ChatResponseModel>> getChatsForUser(String userId) {
+    // Listen to user chats subcollection
+    final userChatsQuery = _firebaseFirestore
+        .collection(FirebaseConstants.usersCollection)
+        .doc(userId)
         .collection(FirebaseConstants.chatsCollection)
-        .where(FieldPath.documentId, whereIn: chatIds)
         .snapshots();
 
-    return chatDetailsQuery.asyncMap((querySnapshot) async {
-      final List<ChatResponseModel> chats = [];
+    return userChatsQuery.asyncExpand((snapshot) {
+      final chatIds = snapshot.docs.map((doc) => doc.id).toList();
 
-      for (var doc in querySnapshot.docs) {
-        final chatData = doc.data();
-        final List<String> participants = List<String>.from(chatData['Participants']);
-
-        // Fetch user profiles for participants
-        final Map<String, UserProfile> userProfileMap = await _getUserProfiles(participants);
-
-        // Build the ChatResponseModel with user profile data
-        chats.add(ChatResponseModel.fromJson(chatData, userProfileMap));
+      if (chatIds.isEmpty) {
+        return Stream.value([]);
       }
 
-      return chats;
+      // Listen to changes in chat details
+      final chatDetailsQuery = _firebaseFirestore
+          .collection(FirebaseConstants.chatsCollection)
+          .where(FieldPath.documentId, whereIn: chatIds)
+          .snapshots();
+
+      return chatDetailsQuery.asyncMap((querySnapshot) async {
+        final List<ChatResponseModel> chats = [];
+
+        for (var doc in querySnapshot.docs) {
+          final chatData = doc.data();
+          final List<String> participants =
+              List<String>.from(chatData['Participants']);
+
+          // Fetch user profiles for participants
+          final Map<String, UserProfile> userProfileMap =
+              await _getUserProfiles(participants);
+
+          // Build the ChatResponseModel with user profile data
+          chats.add(ChatResponseModel.fromJson(chatData, userProfileMap));
+        }
+
+        return chats;
+      });
     });
-  });
-}
+  }
 
   Future<Map<String, UserProfile>> _getUserProfiles(
       List<String> userIds) async {
@@ -105,14 +101,15 @@ Stream<List<ChatResponseModel>> getChatsForUser(String userId) {
       "LastMessageTime": messageData['sentAt'],
     });
   }
-@override
+
+  @override
   Stream<Chat> getChatMessages(String chatId) {
     return _firebaseFirestore
         .collection(FirebaseConstants.chatsCollection)
         .doc(chatId)
-        .snapshots().map((snapshot) {
-          print(snapshot.data());
-          return  Chat.fromJson(snapshot.data() ?? {});
-        });
+        .snapshots()
+        .map((snapshot) {
+      return Chat.fromJson(snapshot.data() ?? {});
+    });
   }
 }

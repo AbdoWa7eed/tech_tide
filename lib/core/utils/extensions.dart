@@ -59,5 +59,7 @@ extension DateTimeExtension on DateTime {
           .format(this);
     }
   }
-}
 
+  String get formattedMonth => DateFormat('MMM').format(this);
+  String get formattedDay => DateFormat('d').format(this);
+}

@@ -64,5 +64,6 @@
   "hours_ago": "{} hour(s) ago",
   "days_ago": "{} day(s) ago",
   "yesterday": "yesterday",
-  "noReplies" : "No replies have been made yet."
-}
+  "noReplies" : "No replies have been made yet.",
+  "peopleGoing" : "{} people are going"
+ }
