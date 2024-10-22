@@ -62,6 +62,8 @@ abstract class RouteGenerator {
                 create: (context) => ServiceLocator.get()..loadUser()),
             BlocProvider<HomeCubit>(
                 create: (context) => ServiceLocator.get()..loadHome()),
+            BlocProvider<EventsCubit>(
+                create: (context) => ServiceLocator.get()..getEvents()),
           ], child: const HomeLayout());
         },
       ),
@@ -115,7 +117,10 @@ abstract class RouteGenerator {
           final String currentUserId = extra['currentUserId'] as String;
           final ChatResponseModel chat = extra['chat'] as ChatResponseModel;
           return CustomSlideTransition(
-              child: ChatPage(chatuserID: chatuser,currentUserId: currentUserId, chat: chat));
+              child: ChatPage(
+                  chatuserID: chatuser,
+                  currentUserId: currentUserId,
+                  chat: chat));
         },
       ),
     ];

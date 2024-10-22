@@ -32,6 +32,7 @@ class PopularTopicsWidget extends StatelessWidget {
             SizedBox(
               height: AppSize.s140,
               child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return PopularTopicItem(

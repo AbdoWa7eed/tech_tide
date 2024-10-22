@@ -38,8 +38,8 @@ abstract class StylesManager {
     fontWeight: FontWeightManager.medium,
   );
 
-  static const TextStyle medium20 = TextStyle(
-    fontSize: FontSize.s20,
+  static const TextStyle medium18Black = TextStyle(
+    fontSize: FontSize.s18,
     color: ColorManager.black,
     fontWeight: FontWeightManager.medium,
   );

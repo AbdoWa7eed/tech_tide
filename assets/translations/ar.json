@@ -64,5 +64,7 @@
   "hours_ago": "{} ساعة مضت",
   "days_ago": "{} يوم مضى",
   "yesterday": "أمس",
-  "noReplies" : "لا يوجد ردود"
+  "noReplies" : "لا يوجد ردود",
+  "peopleGoing" : "{} مهتمون بهذا الحدث"
+
 }

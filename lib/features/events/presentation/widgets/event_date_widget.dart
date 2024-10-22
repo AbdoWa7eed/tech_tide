@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
+import 'package:tech_tide/core/utils/extensions.dart';
 
 class EventDate extends StatelessWidget {
-  const EventDate({super.key});
+  const EventDate({super.key, required this.dateTime});
+
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Sep',
-          style: StylesManager.medium20,
+          dateTime.formattedDay,
+          style: StylesManager.medium18Black,
         ),
         Text(
-          '24',
-          style: StylesManager.medium20,
+          dateTime.formattedMonth,
+          style: StylesManager.medium18Black,
         ),
       ],
     );

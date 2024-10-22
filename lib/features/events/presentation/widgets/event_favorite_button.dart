@@ -1,43 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/features/events/domain/entities/event_entity.dart';
+import 'package:tech_tide/features/events/presentation/cubit/events_cubit.dart';
+import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 
-class FavoriteButton extends StatefulWidget {
-  final bool isFavorite;
-  final VoidCallback? onPressed;
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({super.key, required this.event});
 
-  const FavoriteButton({
-    super.key,
-    required this.isFavorite,
-    this.onPressed,
-  });
-
-  @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  late bool isFavorite;
-  @override
-  void initState() {
-    isFavorite = widget.isFavorite;
-    super.initState();
-  }
+  final EventEntity event;
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isFavorite ? Icons.star_rate_rounded : Icons.star_border_rounded,
-        size: AppSize.s24,
-        fill: isFavorite ? 1 : null,
-        color: isFavorite ? ColorManager.deepTeal : Colors.grey,
-      ),
-      onPressed: () {
-        setState(() {
-          widget.onPressed?.call();
-          isFavorite = !isFavorite;
-        });
+    return BlocBuilder<EventsCubit, EventsState>(
+      builder: (context, state) {
+        final user = context.read<LayoutCubit>().user;
+        final isFavorite = event.goingUsers
+            .any((eventUser) => eventUser.userId == user.userId);
+        return IconButton(
+          icon: Icon(
+            isFavorite ? Icons.star_rate_rounded : Icons.star_border_rounded,
+            size: AppSize.s24,
+            fill: isFavorite ? 1 : null,
+            color: isFavorite ? ColorManager.deepTeal : Colors.grey,
+          ),
+          onPressed: () {
+            context.read<EventsCubit>().toggleEventGoingStatus(
+                  event.eventId,
+                  user,
+                );
+          },
+        );
       },
     );
   }
