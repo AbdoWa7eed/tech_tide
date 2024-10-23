@@ -11,7 +11,9 @@ class EventResponseModel {
   String? title;
   String? description;
   @TimestampConverter()
-  DateTime? dateTime;
+  DateTime? startDateTime;
+  @TimestampConverter()
+  DateTime? endDateTime;
   @JsonKey(includeFromJson: false)
   List<UserResponseModel>? going;
   String? governorate;
@@ -22,7 +24,8 @@ class EventResponseModel {
     this.eventId,
     this.title,
     this.description,
-    this.dateTime,
+    this.startDateTime,
+    this.endDateTime,
     this.going,
     this.governorate,
     this.imageUrl,
@@ -36,7 +39,8 @@ class EventResponseModel {
       {String? eventId,
       String? title,
       String? description,
-      DateTime? dateTime,
+      DateTime? startDateTime,
+      DateTime? endDateTime,
       List<UserResponseModel>? going,
       String? governorate,
       String? imageUrl,
@@ -45,7 +49,8 @@ class EventResponseModel {
       eventId: eventId ?? this.eventId,
       title: title ?? this.title,
       description: description ?? this.description,
-      dateTime: dateTime ?? this.dateTime,
+      startDateTime: startDateTime ?? this.startDateTime,
+      endDateTime: endDateTime ?? this.endDateTime,
       going: going ?? this.going,
       governorate: governorate ?? this.governorate,
       imageUrl: imageUrl ?? this.imageUrl,

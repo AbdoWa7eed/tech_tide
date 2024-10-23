@@ -7,6 +7,7 @@ import 'package:tech_tide/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:tech_tide/features/auth/presentation/views/login_view.dart';
 import 'package:tech_tide/features/auth/presentation/views/signup_view.dart';
 import 'package:tech_tide/features/chats/presentation/views/single_chat_view.dart';
+import 'package:tech_tide/features/events/domain/entities/event_entity.dart';
 import 'package:tech_tide/features/events/presentation/cubit/events_cubit.dart';
 import 'package:tech_tide/features/home/presentation/cubit/home_cubit.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
@@ -18,7 +19,7 @@ import 'package:tech_tide/features/post_details/presentation/cubit/post_details_
 import 'package:tech_tide/features/post_details/presentation/views/post_details_view.dart';
 import 'package:tech_tide/features/splash/presentation/splash_view.dart';
 
-import '../../features/event_details/presentation/views/event_details_view.dart';
+import '../../features/events/presentation/views/event_details_view.dart';
 import '../../features/popular_topic/presentation/views/popular_topic_view.dart';
 
 part 'routes_manager.main.dart';

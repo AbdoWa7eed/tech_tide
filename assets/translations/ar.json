@@ -65,6 +65,9 @@
   "days_ago": "{} يوم مضى",
   "yesterday": "أمس",
   "noReplies" : "لا يوجد ردود",
-  "peopleGoing" : "{} مهتمون بهذا الحدث"
-
+  "peopleGoing" : "{} مهتمون بهذا الحدث",
+  "place": "المكان",
+  "going" : "المهتمون بالحدث",
+  "eventMarkedInterested" : "تم تمييز الحدث كمهتم",
+  "eventMarkedNotInterested" : "تم تمييز الحدث كغير مهتم"
 }

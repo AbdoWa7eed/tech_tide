@@ -52,4 +52,8 @@ abstract class AppStrings {
   static const String noContent = 'noContent';
   static const String noReplies = 'noReplies';
   static const String peopleGoing = 'peopleGoing';
+  static const String place = 'place';
+  static const String going = 'going';
+  static const String eventMarkedInterested = 'eventMarkedInterested';
+  static const String eventMarkedNotInterested = 'eventMarkedNotInterested';
 }

@@ -13,7 +13,7 @@ class AddPostHeaderWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(AppStrings.createPost.translate,
-            style: StylesManager.semiBold18Black),
+            style: StylesManager.semiBold16Black),
         IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => context.pop(),

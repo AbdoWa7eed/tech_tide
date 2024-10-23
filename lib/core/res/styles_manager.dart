@@ -27,6 +27,12 @@ abstract class StylesManager {
     fontWeight: FontWeightManager.medium,
   );
 
+  static const TextStyle medium14Gray = TextStyle(
+    fontSize: FontSize.s14,
+    color: ColorManager.gray,
+    fontWeight: FontWeightManager.medium,
+  );
+
   static const TextStyle medium16 = TextStyle(
     fontSize: FontSize.s16,
     color: ColorManager.white,
@@ -67,8 +73,8 @@ abstract class StylesManager {
     fontWeight: FontWeightManager.semiBold,
   );
 
-  static const TextStyle semiBold18Black = TextStyle(
-    fontSize: FontSize.s18,
+  static const TextStyle semiBold16Black = TextStyle(
+    fontSize: FontSize.s16,
     color: ColorManager.black,
     fontWeight: FontWeightManager.semiBold,
   );

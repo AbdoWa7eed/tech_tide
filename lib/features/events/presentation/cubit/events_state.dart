@@ -13,7 +13,10 @@ final class EventsError extends EventsState {
   EventsError(this.message);
 }
 
-final class ToggleEventGoingStatusSuccess extends EventsState {}
+final class ToggleEventGoingStatusSuccess extends EventsState {
+  bool isGoing;
+  ToggleEventGoingStatusSuccess(this.isGoing);
+}
 
 final class ToggleEventGoingStatusError extends EventsState {
   final String message;

@@ -18,7 +18,7 @@ class PostRepliesWidget extends StatelessWidget {
       children: [
         Text(
           AppStrings.replies.translate,
-          style: StylesManager.semiBold18Black,
+          style: StylesManager.semiBold16Black,
         ),
         const SizedBox(height: AppSize.s12),
         BlocBuilder<PostDetailsCubit, PostDetailsState>(

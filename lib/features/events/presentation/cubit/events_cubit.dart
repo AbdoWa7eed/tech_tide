@@ -42,7 +42,7 @@ class EventsCubit extends Cubit<EventsState> {
           event.goingUsers
               .removeWhere((eventUser) => eventUser.userId == user.userId);
         }
-        emit(ToggleEventGoingStatusSuccess());
+        emit(ToggleEventGoingStatusSuccess(isGoing));
       },
     );
   }

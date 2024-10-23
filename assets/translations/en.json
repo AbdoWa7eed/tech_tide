@@ -65,5 +65,9 @@
   "days_ago": "{} day(s) ago",
   "yesterday": "yesterday",
   "noReplies" : "No replies have been made yet.",
-  "peopleGoing" : "{} people are going"
+  "peopleGoing" : "{} people are going",
+  "place" : "Place",
+  "going" : "People who interested",
+  "eventMarkedInterested" : "Event Marked as Interested",
+  "eventMarkedNotInterested" : "Event Marked as Not Interested"
  }
