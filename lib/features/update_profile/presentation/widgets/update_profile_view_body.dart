@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
@@ -36,6 +34,7 @@ class _UpdateProfileViewBodyState extends State<UpdateProfileViewBody> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.p20,
@@ -56,7 +55,10 @@ class _UpdateProfileViewBodyState extends State<UpdateProfileViewBody> {
               UpdateButtonWidget(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    log("UPDATE");
+                    context.read<UpdateProfileCubit>().updateProfile(
+                          username: _nameController.text.trim(),
+                          bio: _bioController.text.trim(),
+                        );
                   }
                 },
               ),

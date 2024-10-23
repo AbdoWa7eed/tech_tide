@@ -14,6 +14,9 @@ class UpdateButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
       builder: (context, state) {
+        if (state is UpdateProfileLoading) {
+          return const CircularProgressIndicator();
+        }
         return CustomWideButton(
           buttonText: AppStrings.update.translate,
           onPressed: onPressed,

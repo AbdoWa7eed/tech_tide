@@ -7,6 +7,7 @@ abstract class FirebaseConstants {
   static const String chatsCollection = "chats";
   static const String repliesKey = "replies";
   static const String imagesCollection = "images";
+  static const String profileImages = "profileImages";
   static const String likesKey = "likes";
   static const String userIdField = "userId";
   static const String postIdField = "postId";

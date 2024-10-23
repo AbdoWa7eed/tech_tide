@@ -44,6 +44,7 @@ abstract class AppStrings {
   static const String passwordDontMatch = 'passwordDontMatch';
   static const String fieldsRequired = 'fieldsRequired';
   static const String mustBeAtLeast6Chars = 'mustBeAtLeast6Chars';
+  static const String mustBeAtMax20Chars = 'mustBeAtMax20Chars';
   static const String invalidEmailInput = 'invalidEmailInput';
   static const String reload = 'reload';
   static const String hi = 'hi';
@@ -61,4 +62,5 @@ abstract class AppStrings {
   static const String bio = 'bio';
   static const String bioHint = 'bioHint';
   static const String update = 'update';
+  static const String noDataToUpdate = 'noDataToUpdate';
 }

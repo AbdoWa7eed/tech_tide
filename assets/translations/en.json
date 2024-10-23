@@ -74,5 +74,7 @@
   "updateProfileSuccess" : "Profile Updated Successfully",
   "bio" : "Bio",
   "bioHint" : "Tell us about yourself",
-  "update" : "Update"
+  "update" : "Update",
+  "noDataToUpdate" : "There is no data to update",
+  "mustBeAtMax20Chars" : "Must be at max 20 characters"
  }

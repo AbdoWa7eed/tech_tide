@@ -134,10 +134,16 @@ abstract class RouteGenerator {
       GoRoute(
         path: Routes.updateProfile,
         pageBuilder: (context, state) {
+          ServiceLocator.initUpdateProfile();
           final user = ServiceLocator.get<LayoutCubit>().user;
           return CustomSlideTransition(
-            child: BlocProvider(
-              create: (context) => UpdateProfileCubit()..setUser(user),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+                BlocProvider<UpdateProfileCubit>(
+                  create: (context) => ServiceLocator.get()..setUser(user),
+                )
+              ],
               child: const UpdateProfileView(),
             ),
           );

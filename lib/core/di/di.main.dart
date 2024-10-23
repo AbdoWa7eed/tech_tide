@@ -133,4 +133,18 @@ abstract class ServiceLocator {
       _getIt.registerLazySingleton<EventsCubit>(() => EventsCubit(_getIt()));
     }
   }
+
+  static initUpdateProfile() {
+    if (!_getIt.isRegistered<UpdateProfileRepository>()) {
+      _getIt
+        ..registerLazySingleton<UpdateProfileDataSource>(() =>
+            UpdateProfileDataSourceImpl(_getIt(), _getIt(), _getIt(), _getIt()))
+        ..registerLazySingleton<UpdateProfileRepository>(
+            () => UpdateProfileRepositoryImpl(_getIt()));
+    }
+    if (!_getIt.isRegistered<UpdateProfileCubit>()) {
+      _getIt.registerFactory<UpdateProfileCubit>(
+          () => UpdateProfileCubit(_getIt()));
+    }
+  }
 }

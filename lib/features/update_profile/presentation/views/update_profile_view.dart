@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/gradiant_app_bar.dart';
+import 'package:tech_tide/features/update_profile/presentation/views/update_profile_listener.dart';
 import 'package:tech_tide/features/update_profile/presentation/widgets/update_profile_view_body.dart';
 
 class UpdateProfileView extends StatelessWidget {
@@ -9,9 +10,11 @@ class UpdateProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: GradientAppBar(title: AppStrings.updateProfile.translate),
-      body: const UpdateProfileViewBody(),
+    return UpdateProfileListener(
+      child: Scaffold(
+        appBar: GradientAppBar(title: AppStrings.updateProfile.translate),
+        body: const UpdateProfileViewBody(),
+      ),
     );
   }
 }
