@@ -14,40 +14,44 @@ class HeaderInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<LayoutCubit>().user;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("${AppStrings.hi.translate} ${user.username}",
-                      style: StylesManager.semiBold30),
-                  Text(
-                    AppStrings.homeSubtitle.translate,
-                    style: StylesManager.medium16,
+    return BlocBuilder<LayoutCubit, LayoutState>(
+      builder: (context, state) {
+        final user = context.read<LayoutCubit>().user;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${AppStrings.hi.translate} ${user.username}",
+                          style: StylesManager.semiBold30),
+                      Text(
+                        AppStrings.homeSubtitle.translate,
+                        style: StylesManager.medium16,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    //TODO: ADD NAVIGATION TO PROFILE SCREEN
+                    //JUST A TEST FOR UPDATE PROFILE
+                    context.push(Routes.updateProfile);
+                  },
+                  child: CircledNetworkImage(
+                    imageUrl: user.imageUrl,
+                  ),
+                ),
+              ],
             ),
-            GestureDetector(
-              onTap: () {
-                //TODO: ADD NAVIGATION TO PROFILE SCREEN
-                //JUST A TEST FOR UPDATE PROFILE
-                context.push(Routes.updateProfile);
-              },
-              child: CircledNetworkImage(
-                imageUrl: user.imageUrl,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

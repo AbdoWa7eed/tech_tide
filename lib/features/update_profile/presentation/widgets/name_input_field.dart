@@ -25,7 +25,9 @@ class NameInputField extends StatelessWidget {
           )
               .required()
               .minLength(6, AppStrings.mustBeAtLeast6Chars.translate)
+              .maxLength(20, AppStrings.mustBeAtMax20Chars.translate)
               .build(),
+          maxLines: 1,
           controller: nameController,
           hintText: AppStrings.nameHint.translate)
     ]);

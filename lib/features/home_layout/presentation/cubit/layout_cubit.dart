@@ -24,7 +24,7 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   int get index => _currentIndex;
 
-  late final UserEntity user;
+  late UserEntity user;
 
   void loadUser() async {
     emit(LayoutLoading());
@@ -38,6 +38,11 @@ class LayoutCubit extends Cubit<LayoutState> {
         emit(LayoutLoaded(user));
       },
     );
+  }
+
+  void setUser(UserEntity user) {
+    this.user = user;
+    emit(LayoutLoaded(user));
   }
 
   @override

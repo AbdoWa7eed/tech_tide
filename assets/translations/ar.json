@@ -74,5 +74,7 @@
   "updateProfileSuccess" : "تم تحديث الملف الشخصي بنجاح",
   "bio": "السيرة الذاتية",
   "bioHint": "نبذة مختصرة عنك",
-  "update" : "تحديث"
+  "update" : "تحديث",
+  "noDataToUpdate" : "لا يوجد بيانات لتحديثها",
+  "mustBeAtMax20Chars": "يجب أن يكون على الاكثر 20 حروف."
 }

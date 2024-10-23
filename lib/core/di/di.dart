@@ -37,5 +37,9 @@ import 'package:tech_tide/features/post_details/data/data_source/post_details_da
 import 'package:tech_tide/features/post_details/data/repo/post_details_repo_impl.dart';
 import 'package:tech_tide/features/post_details/domain/repo/post_details_repo.dart';
 import 'package:tech_tide/features/post_details/presentation/cubit/post_details_cubit.dart';
+import 'package:tech_tide/features/update_profile/data/data_source/update_profile_data_source.dart';
+import 'package:tech_tide/features/update_profile/data/repo/update_profile_repo_impl.dart';
+import 'package:tech_tide/features/update_profile/domain/repo/update_profile_repo.dart';
+import 'package:tech_tide/features/update_profile/presentation/cubit/update_profile_cubit.dart';
 
 part 'di.main.dart';

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_tide/core/widgets/error_view.dart';
@@ -27,6 +29,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
           return ErrorViewWidget(error: state.message);
         }
         final cubit = context.read<LayoutCubit>();
+        log(cubit.user.username);
         return ManagePostListener(
           child: PageView(
             controller: cubit.pageController,
