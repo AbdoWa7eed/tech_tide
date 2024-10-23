@@ -10,6 +10,7 @@ abstract class Routes {
   static const String postDetailsRoute = '/post-details';
   static const String eventDetailsRoute = '/event-details';
   static const String chatRoute = '/chat';
+  static const String updateProfile = '/update-profile';
 }
 
 abstract class RouteGenerator {
@@ -128,6 +129,18 @@ abstract class RouteGenerator {
                   chatuserID: chatuser,
                   currentUserId: currentUserId,
                   chat: chat));
+        },
+      ),
+      GoRoute(
+        path: Routes.updateProfile,
+        pageBuilder: (context, state) {
+          final user = ServiceLocator.get<LayoutCubit>().user;
+          return CustomSlideTransition(
+            child: BlocProvider(
+              create: (context) => UpdateProfileCubit()..setUser(user),
+              child: const UpdateProfileView(),
+            ),
+          );
         },
       ),
     ];

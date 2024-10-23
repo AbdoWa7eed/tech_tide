@@ -4,8 +4,8 @@ import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
+import 'package:tech_tide/core/widgets/custom_white_field.dart';
 import 'package:tech_tide/features/add_post/presentation/cubit/add_post_cubit.dart';
-import 'package:tech_tide/features/add_post/presentation/widget/custom_white_field.dart';
 
 class TagsInputWidget extends StatefulWidget {
   const TagsInputWidget({super.key});

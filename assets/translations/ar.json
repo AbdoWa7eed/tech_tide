@@ -69,5 +69,10 @@
   "place": "المكان",
   "going" : "المهتمون بالحدث",
   "eventMarkedInterested" : "تم تمييز الحدث كمهتم",
-  "eventMarkedNotInterested" : "تم تمييز الحدث كغير مهتم"
+  "eventMarkedNotInterested" : "تم تمييز الحدث كغير مهتم",
+  "updateProfile" : "تحديث الملف الشخصي",
+  "updateProfileSuccess" : "تم تحديث الملف الشخصي بنجاح",
+  "bio": "السيرة الذاتية",
+  "bioHint": "نبذة مختصرة عنك",
+  "update" : "تحديث"
 }

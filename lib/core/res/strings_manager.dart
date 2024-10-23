@@ -56,4 +56,9 @@ abstract class AppStrings {
   static const String going = 'going';
   static const String eventMarkedInterested = 'eventMarkedInterested';
   static const String eventMarkedNotInterested = 'eventMarkedNotInterested';
+  static const String updateProfile = 'updateProfile';
+  static const String updateProfileSuccess = 'updateProfileSuccess';
+  static const String bio = 'bio';
+  static const String bioHint = 'bioHint';
+  static const String update = 'update';
 }

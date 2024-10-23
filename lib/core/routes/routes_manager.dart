@@ -18,6 +18,8 @@ import 'package:tech_tide/features/popular_topic/presentation/cubit/popular_topi
 import 'package:tech_tide/features/post_details/presentation/cubit/post_details_cubit.dart';
 import 'package:tech_tide/features/post_details/presentation/views/post_details_view.dart';
 import 'package:tech_tide/features/splash/presentation/splash_view.dart';
+import 'package:tech_tide/features/update_profile/presentation/cubit/update_profile_cubit.dart';
+import 'package:tech_tide/features/update_profile/presentation/views/update_profile_view.dart';
 
 import '../../features/events/presentation/views/event_details_view.dart';
 import '../../features/popular_topic/presentation/views/popular_topic_view.dart';
