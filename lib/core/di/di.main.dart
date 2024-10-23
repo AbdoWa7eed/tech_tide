@@ -130,7 +130,7 @@ abstract class ServiceLocator {
             () => EventsRepositoryImpl(_getIt()));
     }
     if (!_getIt.isRegistered<EventsCubit>()) {
-      _getIt.registerFactory<EventsCubit>(() => EventsCubit(_getIt()));
+      _getIt.registerLazySingleton<EventsCubit>(() => EventsCubit(_getIt()));
     }
   }
 }

@@ -14,6 +14,6 @@ abstract class FirebaseConstants {
   static const String createdAtField = "createdAt";
   static const String imageUrlField = "imageUrl";
   static const String tagField = "tag";
-  static const String dateTimeField = "dateTime";
+  static const String dateTimeField = "startDateTime";
   static const String goingField = "going";
 }

@@ -103,8 +103,15 @@ abstract class RouteGenerator {
       GoRoute(
         path: Routes.eventDetailsRoute,
         pageBuilder: (context, state) {
+          final event = state.extra as EventEntity;
           return CustomSlideTransition(
-            child: const EventDetailsView(),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+                BlocProvider<EventsCubit>.value(value: ServiceLocator.get()),
+              ],
+              child: EventDetailsView(event: event),
+            ),
           );
         },
       ),

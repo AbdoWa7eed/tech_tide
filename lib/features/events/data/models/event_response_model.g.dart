@@ -11,8 +11,10 @@ EventResponseModel _$EventResponseModelFromJson(Map<String, dynamic> json) =>
       eventId: json['eventId'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      dateTime: _$JsonConverterFromJson<Timestamp, DateTime>(
-          json['dateTime'], const TimestampConverter().fromJson),
+      startDateTime: _$JsonConverterFromJson<Timestamp, DateTime>(
+          json['startDateTime'], const TimestampConverter().fromJson),
+      endDateTime: _$JsonConverterFromJson<Timestamp, DateTime>(
+          json['endDateTime'], const TimestampConverter().fromJson),
       governorate: json['governorate'] as String?,
       imageUrl: json['imageUrl'] as String?,
       address: json['address'] as String?,

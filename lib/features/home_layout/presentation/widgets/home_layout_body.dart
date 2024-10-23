@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/widgets/error_view.dart';
 import 'package:tech_tide/features/chats/presentation/views/chats_view.dart';
 import 'package:tech_tide/features/home/presentation/views/home_view.dart';
@@ -32,17 +31,17 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
           child: PageView(
             controller: cubit.pageController,
             physics: const NeverScrollableScrollPhysics(),
-            children: [
+            children: const [
               //Add Home View
-              const HomeView(),
+              HomeView(),
               //Add Event View
-              const EventsView(),
+              EventsView(),
               //Opens "Add Post" BottomSheet
-              const SizedBox.shrink(),
+              SizedBox.shrink(),
               //Add Chats View
-              Chatspage(),
+              ChatsView(),
               //Add Profile View
-              const Placeholder(),
+              Placeholder(),
             ],
           ),
         );

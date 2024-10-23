@@ -14,7 +14,7 @@ class PostContentWidget extends StatelessWidget {
       children: [
         Text(
           post.title,
-          style: StylesManager.semiBold18Black,
+          style: StylesManager.semiBold16Black,
         ),
         const SizedBox(height: AppSize.s8),
         CustomReadmoreText(

@@ -20,7 +20,7 @@ class EventCardItem extends StatelessWidget {
       height: AppSize.s250,
       child: GestureDetector(
         onTap: () {
-          context.push(Routes.eventDetailsRoute);
+          context.push(Routes.eventDetailsRoute, extra: event);
         },
         child: Card(
           elevation: 2,
@@ -39,7 +39,7 @@ class EventCardItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       EventDate(
-                        dateTime: event.dateTime,
+                        dateTime: event.startDateTime,
                       ),
                       const SizedBox(width: AppSize.s12),
                       Expanded(
