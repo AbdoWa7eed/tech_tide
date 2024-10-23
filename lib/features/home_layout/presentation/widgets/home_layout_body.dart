@@ -7,6 +7,7 @@ import 'package:tech_tide/features/chats/presentation/views/chats_view.dart';
 import 'package:tech_tide/features/home/presentation/views/home_view.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 import 'package:tech_tide/features/manage_post/presentation/manage_post_listener.dart';
+import 'package:tech_tide/features/profile/presentation/views/profile_view.dart';
 
 import '../../../events/presentation/views/events_view.dart';
 
@@ -44,7 +45,7 @@ class _HomeLayoutBodyState extends State<HomeLayoutBody> {
               //Add Chats View
               ChatsView(),
               //Add Profile View
-              Placeholder(),
+              ProfileView(),
             ],
           ),
         );
