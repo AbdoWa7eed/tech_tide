@@ -11,6 +11,7 @@ abstract class Routes {
   static const String eventDetailsRoute = '/event-details';
   static const String chatRoute = '/chat';
   static const String updateProfile = '/update-profile';
+  static const String profileRoute = '/profile';
 }
 
 abstract class RouteGenerator {
