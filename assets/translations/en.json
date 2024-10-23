@@ -69,5 +69,10 @@
   "place" : "Place",
   "going" : "People who interested",
   "eventMarkedInterested" : "Event Marked as Interested",
-  "eventMarkedNotInterested" : "Event Marked as Not Interested"
+  "eventMarkedNotInterested" : "Event Marked as Not Interested",
+  "updateProfile" : "Update Profile",
+  "updateProfileSuccess" : "Profile Updated Successfully",
+  "bio" : "Bio",
+  "bioHint" : "Tell us about yourself",
+  "update" : "Update"
  }

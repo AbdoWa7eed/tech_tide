@@ -6,25 +6,24 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/custom_white_field.dart';
 
-class AddPostTitleWidget extends StatelessWidget {
-  const AddPostTitleWidget({super.key, this.titleController});
+class BioInputField extends StatelessWidget {
+  const BioInputField({super.key, this.nameController});
 
-  final TextEditingController? titleController;
+  final TextEditingController? nameController;
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
-        AppStrings.title.translate,
+        AppStrings.bio.translate,
         style: StylesManager.medium18,
       ),
       const SizedBox(height: AppSize.s12),
       CustomWhiteTextField(
-          validator: ValidationBuilder(
-            requiredMessage: AppStrings.fieldsRequired.translate,
-          ).required().build(),
-          controller: titleController,
-          hintText: AppStrings.addPostTitle.translate)
+          validator: ValidationBuilder(optional: true).build(),
+          minLines: 6,
+          controller: nameController,
+          hintText: AppStrings.bioHint.translate)
     ]);
   }
 }
