@@ -9,14 +9,16 @@ import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/gradiant_app_bar.dart';
 import 'package:tech_tide/features/chats/presentation/widgets/chat_tile.dart';
 
-class Chatspage extends StatefulWidget {
+class ChatsView extends StatefulWidget {
+  const ChatsView({super.key});
+
   @override
-  _ChatspageState createState() => _ChatspageState();
+  State<ChatsView> createState() => _ChatsViewState();
 }
 
-class _ChatspageState extends State<Chatspage> {
+class _ChatsViewState extends State<ChatsView> {
   late ChatsDataSource _chatsDataSource;
-  late FirebaseAuth _fireaseAuth;
+  late FirebaseAuth _firebaseAuth;
   late Stream<List<ChatResponseModel>> _chatsStream;
   @override
   void initState() {
@@ -24,9 +26,10 @@ class _ChatspageState extends State<Chatspage> {
 
     // Initialize the ChatsDataSource with Firestore
     _chatsDataSource = ChatsDataSourceImpl(FirebaseFirestore.instance);
-    _fireaseAuth = FirebaseAuth.instance;
+    _firebaseAuth = FirebaseAuth.instance;
     // Assuming you have the current user ID stored somewhere
-    String userId = _fireaseAuth.currentUser!.uid; // Replace with actual userId
+    String userId =
+        _firebaseAuth.currentUser!.uid; // Replace with actual userId
 
     // Get the stream of chats for this user
     _chatsStream = _chatsDataSource.getChatsForUser(userId);

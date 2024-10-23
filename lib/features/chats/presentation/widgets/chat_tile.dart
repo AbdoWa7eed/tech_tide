@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/data/models/chats/chats_response_model.dart';
-import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/widgets/circled_network_image.dart';
 
 class ChatTile extends StatelessWidget {
