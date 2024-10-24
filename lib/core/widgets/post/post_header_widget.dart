@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/entities/post_entity.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/routes/routes_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/circled_network_image.dart';
 import 'package:tech_tide/core/widgets/post/saved_post_button.dart';
@@ -24,8 +26,13 @@ class PostHeaderWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircledNetworkImage(
-          imageUrl: post.user.imageUrl,
+        GestureDetector(
+          onTap: () {
+            context.push(Routes.profileRoute, extra: post.user.userId);
+          },
+          child: CircledNetworkImage(
+            imageUrl: post.user.imageUrl,
+          ),
         ),
         const SizedBox(width: AppSize.s12),
         Expanded(

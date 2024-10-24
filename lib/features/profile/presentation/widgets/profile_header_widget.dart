@@ -10,24 +10,38 @@ import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/widgets/custom_snack_bar.dart';
+import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 import 'package:tech_tide/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/popup_menu_widget.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/profile_image_widget.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/user_bio_widget.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/user_stats_widget.dart';
 
-class ProfileHeaderWidget extends StatelessWidget {
+class ProfileHeaderWidget extends StatefulWidget {
   const ProfileHeaderWidget({super.key});
 
   @override
+  State<ProfileHeaderWidget> createState() => _ProfileHeaderWidgetState();
+}
+
+class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
+  late FirebaseAuth _firebaseAuth;
+  late ChatsDataSource _chatsDataSource;
+
+  @override
+  void initState() {
+    _chatsDataSource = ChatsDataSourceImpl(FirebaseFirestore.instance);
+    _firebaseAuth = FirebaseAuth.instance;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-      late FirebaseAuth _firebaseAuth;
-      late ChatsDataSource _chatsDataSource;
-       _firebaseAuth = FirebaseAuth.instance;
-      _chatsDataSource = ChatsDataSourceImpl(FirebaseFirestore.instance);
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        final state = context.watch<ProfileCubit>().state as ProfileLoaded;
+        final user = context.read<LayoutCubit>().user;
+        final cubit = context.watch<ProfileCubit>();
         return Container(
           decoration: const BoxDecoration(gradient: ColorManager.gradientColor),
           width: double.infinity,
@@ -45,31 +59,42 @@ class ProfileHeaderWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ProfileImageWidget(
-                          imageUrl: state.profileEntity.user.imageUrl),
+                          imageUrl: cubit.profileEntity.user.imageUrl),
                       const PopupMenuWidget(),
                     ],
                   ),
                   const SizedBox(height: AppSize.s8),
-                  if (true) ...[
+                  if (user.userId != cubit.profileEntity.user.userId) ...[
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          state.profileEntity.user.username,
+                          cubit.profileEntity.user.username,
                           style: StylesManager.semiBold18,
                         ),
                         const SizedBox(width: AppSize.s8),
                         GestureDetector(
-                          onTap: () {   
-                            String chatid = _chatsDataSource.generateChatId(_firebaseAuth.currentUser!.uid, otherUserId);
-                            bool chatExists = _chatsDataSource.doesChatExist(chatid) as bool;
-                            if(!chatExists){
-                             _chatsDataSource.createChat( _firebaseAuth.currentUser!.uid, otherUserId);
-                            }                      
-                            ChatResponseModel chat = _chatsDataSource.getChatById(chatid) as ChatResponseModel;
+                          onTap: () async {
+                            String chatId = _chatsDataSource.generateChatId(
+                                _firebaseAuth.currentUser!.uid,
+                                cubit.profileEntity.user.userId);
+                            bool chatExists =
+                                await _chatsDataSource.doesChatExist(chatId);
+                            if (!chatExists) {
+                              _chatsDataSource.createChat(
+                                  _firebaseAuth.currentUser!.uid,
+                                  cubit.profileEntity.user.userId);
+                            }
+                            ChatResponseModel? chat =
+                                await _chatsDataSource.getChatById(chatId);
+                            if (chat == null) {
+                              CustomSnackBar.error(
+                                  "Cannot open chat for current time", context);
+                            }
                             (context).push('/chat', extra: {
-                              'chatuser': otherUserId,
+                              'chatuser': cubit.profileEntity.user.userId,
                               'currentUserId': _firebaseAuth.currentUser?.uid,
-                              'chat': chat
+                              'chat': chat!
                             });
                           },
                           child: SvgPicture.asset(
@@ -80,7 +105,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                     )
                   ] else ...[
                     Text(
-                      state.profileEntity.user.username,
+                      cubit.profileEntity.user.username,
                       style: StylesManager.semiBold18,
                     ),
                   ],
@@ -88,10 +113,10 @@ class ProfileHeaderWidget extends StatelessWidget {
                     color: ColorManager.whiteWith40Opacity,
                   ),
                   UserBioWidget(
-                    bio: state.profileEntity.user.bio,
+                    bio: cubit.profileEntity.user.bio,
                   ),
                   const SizedBox(height: AppSize.s8),
-                  UserStatsWidget(user: state.profileEntity.user),
+                  UserStatsWidget(user: cubit.profileEntity.user),
                 ],
               ),
             ),

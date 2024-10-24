@@ -12,15 +12,28 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileRepositoryImpl(this._profileDataSource);
 
   @override
-  ResultStream<ProfileEntity> getProfile() {
+  ResultStream<ProfileEntity> getProfile({String? userId}) {
     try {
-      final result = _profileDataSource.getProfile().map((profile) {
+      var responseStream = userId != null
+          ? _profileDataSource.getOtherUserProfile(userId)
+          : _profileDataSource.getProfile();
+
+      final result = responseStream.map((profile) {
         final profileEntity = profile.toEntity();
         return profileEntity;
       }).handleError((error) {
         return Left(ErrorHandler.handleException(error));
       });
       return Right(result);
+    } catch (e) {
+      return Left(ErrorHandler.handleException(e));
+    }
+  }
+
+  @override
+  ResultFuture<void> logout() async {
+    try {
+      return Right(await _profileDataSource.logout());
     } catch (e) {
       return Left(ErrorHandler.handleException(e));
     }

@@ -5,6 +5,7 @@ import 'package:tech_tide/core/network/firebase_constants.dart';
 
 abstract class UserDataSource {
   Future<UserResponseModel> getUser();
+  Future<UserResponseModel> getOtherUserData(String userId);
 }
 
 class UserDataSourceImpl implements UserDataSource {
@@ -28,5 +29,16 @@ class UserDataSourceImpl implements UserDataSource {
     final userModel = UserResponseModel.fromJson(user.data() ?? {});
     return userModel.copyWith(
         savedPosts: savedPosts.docs.map((e) => e.id).toList());
+  }
+
+  @override
+  Future<UserResponseModel> getOtherUserData(String userId) async {
+    final user = await _firebaseFirestore
+        .collection(FirebaseConstants.usersCollection)
+        .doc(userId)
+        .get();
+
+    final userModel = UserResponseModel.fromJson(user.data() ?? {});
+    return userModel;
   }
 }

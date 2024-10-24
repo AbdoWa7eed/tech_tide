@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/features/profile/domain/entities/profile_entity.dart';
@@ -10,23 +12,40 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final ProfileRepository _profileRepository;
 
-  Future<void> getProfile() async {
+  late StreamSubscription _profileSubscription;
+
+  late ProfileEntity _profileEntity;
+
+  ProfileEntity get profileEntity => _profileEntity;
+
+  Future<void> getProfile({String? userId}) async {
     emit(ProfileLoading());
-    final result = _profileRepository.getProfile();
+    final result = _profileRepository.getProfile(userId: userId);
     result.fold(
       (failure) => emit(ProfileError(failure.message)),
       (stream) {
-        stream.listen(
+        _profileSubscription = stream.listen(
           (profile) {
-            emit(ProfileLoaded(profile));
+            _profileEntity = profile;
+            emit(ProfileLoaded());
           },
         );
       },
     );
   }
 
+  Future<void> logout() async {
+    emit(LogoutLoading());
+    final result = await _profileRepository.logout();
+    result.fold(
+      (failure) => emit(LogoutError(failure.message)),
+      (success) => emit(LogoutSuccess()),
+    );
+  }
+
   @override
   Future<void> close() {
+    _profileSubscription.cancel();
     ServiceLocator.unregister<ProfileCubit>();
     return super.close();
   }

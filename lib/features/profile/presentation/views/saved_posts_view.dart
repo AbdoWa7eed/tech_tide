@@ -16,8 +16,8 @@ class SavedPostsView extends StatelessWidget {
       appBar: GradientAppBar(title: AppStrings.savedPosts.translate),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
-          final state = context.read<ProfileCubit>().state as ProfileLoaded;
-          if (state.profileEntity.savedPosts.isEmpty) {
+          final cubit = context.read<ProfileCubit>();
+          if (cubit.profileEntity.savedPosts.isEmpty) {
             return const EmptyViewWidget();
           }
           return const SavedPostsViewBody();

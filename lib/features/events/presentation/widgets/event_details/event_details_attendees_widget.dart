@@ -22,13 +22,13 @@ class AttendeesWidget extends StatelessWidget {
           children: [
             Text(AppStrings.going.translate,
                 style: StylesManager.semiBold16Black),
-            const SizedBox(height: 8), // Add spacing between title and avatars
+            const SizedBox(height: AppSize.s8),
             SizedBox(
-              height: AppSize.s45,
-              width: AppSize.s45,
+              height: AppSize.s50,
+              width: AppSize.s50,
               child: Row(
                 children: [
-                  ListView.builder(
+                  ListView.separated(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemCount: users.length <= 4 ? users.length : 4,
@@ -38,6 +38,9 @@ class AttendeesWidget extends StatelessWidget {
                         imageUrl: users[index].imageUrl,
                       );
                     },
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: AppSize.s8,
+                    ),
                   ),
                   Visibility(
                     visible: !(users.length <= 4),

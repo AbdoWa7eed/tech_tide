@@ -10,7 +10,7 @@ class SavedPostsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-      final state = context.read<ProfileCubit>().state as ProfileLoaded;
+      final cubit = context.read<ProfileCubit>();
 
       return ListView.separated(
         padding: const EdgeInsets.symmetric(
@@ -20,12 +20,12 @@ class SavedPostsViewBody extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return PostWidget(post: state.profileEntity.savedPosts[index]);
+          return PostWidget(post: cubit.profileEntity.savedPosts[index]);
         },
         separatorBuilder: (context, index) => const SizedBox(
           height: AppSize.s16,
         ),
-        itemCount: state.profileEntity.savedPosts.length,
+        itemCount: cubit.profileEntity.savedPosts.length,
       );
     });
   }
