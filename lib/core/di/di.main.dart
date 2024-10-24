@@ -139,7 +139,7 @@ abstract class ServiceLocator {
     if (!_getIt.isRegistered<ProfileRepository>()) {
       _getIt
         ..registerLazySingleton<ProfileDataSource>(
-            () => ProfileDataSourceImpl(_getIt(), _getIt(), _getIt()))
+            () => ProfileDataSourceImpl(_getIt(), _getIt(), _getIt(), _getIt()))
         ..registerLazySingleton<ProfileRepository>(
             () => ProfileRepositoryImpl(_getIt()));
     }

@@ -7,12 +7,19 @@ import 'package:tech_tide/core/network/firebase_constants.dart';
 
 abstract class ChatsDataSource {
   Stream<List<ChatResponseModel>> getChatsForUser(String userId);
+
   Future<Map<String, UserProfile>> getUserProfile(String userId);
+
   Future<void> sendChatMessage(String chatId, Message message);
+
   Stream<Chat> getChatMessages(String chatId);
+
   Future<void> createChat(String userId, String otherUserId);
+
   Future<ChatResponseModel?> getChatById(String chatId);
+
   String generateChatId(String userId, String otherUserId);
+
   Future<bool> doesChatExist(String chatId);
 }
 
@@ -137,10 +144,18 @@ class ChatsDataSourceImpl implements ChatsDataSource {
       "Participants": [userId, otherUserId],
       "LastMessage": "",
       "LastMessageTime": DateTime.now(),
+      "ChatID": chatRef.id,
       "messages": [],
     };
 
     await chatRef.set(chatData);
+
+    await _firebaseFirestore
+        .collection(FirebaseConstants.usersCollection)
+        .doc(userId)
+        .collection(FirebaseConstants.chatsCollection)
+        .doc(chatId)
+        .set({});
   }
 
   @override

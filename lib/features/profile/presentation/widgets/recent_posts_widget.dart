@@ -14,8 +14,8 @@ class RecentPostsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        final state = context.read<ProfileCubit>().state as ProfileLoaded;
-        if (state.profileEntity.savedPosts.isEmpty) {
+        final cubit = context.read<ProfileCubit>();
+        if (cubit.profileEntity.posts.isEmpty) {
           return const SizedBox.shrink();
         }
         return Column(
@@ -31,12 +31,12 @@ class RecentPostsWidget extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return PostWidget(post: state.profileEntity.posts[index]);
+                return PostWidget(post: cubit.profileEntity.posts[index]);
               },
               separatorBuilder: (context, index) => const SizedBox(
                 height: AppSize.s16,
               ),
-              itemCount: state.profileEntity.posts.length,
+              itemCount: cubit.profileEntity.posts.length,
             ),
           ],
         );

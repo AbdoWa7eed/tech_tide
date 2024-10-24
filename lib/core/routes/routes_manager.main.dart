@@ -167,6 +167,21 @@ abstract class RouteGenerator {
           );
         },
       ),
+      GoRoute(
+        path: Routes.profileRoute,
+        pageBuilder: (context, state) {
+          final userId = state.extra as String;
+          return CustomSlideTransition(
+            child: MultiBlocProvider(providers: [
+              BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ManagePostCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ProfileCubit>.value(
+                value: ServiceLocator.get()..getProfile(userId: userId),
+              ),
+            ], child: const ProfileView()),
+          );
+        },
+      ),
     ];
   }
 }
