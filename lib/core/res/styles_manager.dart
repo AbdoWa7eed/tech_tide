@@ -15,6 +15,18 @@ abstract class StylesManager {
     fontWeight: FontWeightManager.regular,
   );
 
+  static const TextStyle regular14White = TextStyle(
+    fontSize: FontSize.s14,
+    color: ColorManager.white,
+    fontWeight: FontWeightManager.regular,
+  );
+
+  static const TextStyle regular16White = TextStyle(
+    fontSize: FontSize.s16,
+    color: ColorManager.white,
+    fontWeight: FontWeightManager.regular,
+  );
+
   static const TextStyle regular16 = TextStyle(
     fontSize: FontSize.s16,
     color: ColorManager.black,

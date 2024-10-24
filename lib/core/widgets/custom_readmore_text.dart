@@ -9,20 +9,24 @@ class CustomReadmoreText extends StatelessWidget {
   const CustomReadmoreText({
     super.key,
     required this.text,
+    this.style = StylesManager.regular12,
     this.trimLines = 3,
+    this.colorClickableText = ColorManager.primary,
   });
 
   final String text;
   final int trimLines;
+  final TextStyle style;
+  final Color colorClickableText;
 
   @override
   Widget build(BuildContext context) {
     return ReadMoreText(
       text,
-      style: StylesManager.regular12,
+      style: style,
       trimMode: TrimMode.Line,
       trimLines: trimLines,
-      colorClickableText: ColorManager.primary,
+      colorClickableText: colorClickableText,
       trimCollapsedText: AppStrings.showMore.translate,
       trimExpandedText: ' ${AppStrings.showLess.translate}',
     );

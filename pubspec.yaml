@@ -58,6 +58,7 @@ dependencies:
   cached_network_image: ^3.4.1
   dash_chat_2: ^0.0.21
   firebase_storage: ^12.3.3
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:

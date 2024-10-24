@@ -83,13 +83,13 @@ class PostDetailsDataSourceImpl implements PostDetailsDataSource {
 
   @override
   Future<void> addReplyToPost(AddReplyRequest request, String postId) async {
-    final requestWithUser = request.copyWith(userId: userId);
+    final userId = _firebaseAuth.currentUser?.uid; // Retrieve the user ID
+    if (userId == null) return; // Ensure user is authenticated
 
+    final requestWithUser = request.copyWith(userId: userId);
     final postRef =
         _firebaseFirestore.collection(FirebaseConstants.postsKey).doc(postId);
-
     final repliesRef = postRef.collection(FirebaseConstants.repliesKey);
-
     final replyRef = repliesRef.doc();
 
     await _firebaseFirestore.runTransaction((transaction) async {
@@ -99,16 +99,21 @@ class PostDetailsDataSourceImpl implements PostDetailsDataSource {
         throw Failure(message: ErrorMessages.documentNotFound.translate);
       }
 
-      final currentReplies = postDoc.data()?[FirebaseConstants.repliesKey] ?? 0;
-
       transaction.set(replyRef, {
         ...requestWithUser.toJson(),
         FirebaseConstants.replyIdField: replyRef.id,
         FirebaseConstants.createdAtField: FieldValue.serverTimestamp(),
       });
 
-      transaction
-          .update(postRef, {FirebaseConstants.repliesKey: currentReplies + 1});
+      transaction.update(
+          postRef, {FirebaseConstants.repliesKey: FieldValue.increment(1)});
+
+      final userRef = _firebaseFirestore
+          .collection(FirebaseConstants.usersCollection)
+          .doc(userId);
+      transaction.update(userRef, {
+        FirebaseConstants.repliesCountField: FieldValue.increment(1),
+      });
     });
   }
 

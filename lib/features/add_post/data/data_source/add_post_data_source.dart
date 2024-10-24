@@ -21,26 +21,50 @@ class AddPostDataSourceImpl implements AddPostDataSource {
   @override
   Future<void> addPost(AddPostRequest appPostRequest) async {
     final userId = _firebaseAuth.currentUser?.uid;
+    if (userId == null) return; // Ensure user is authenticated
+
     appPostRequest = appPostRequest.copyWith(userId: userId);
+
     await _firebaseFirestore.runTransaction((transaction) async {
       final postRef =
           _firebaseFirestore.collection(FirebaseConstants.postsKey).doc();
       final postId = postRef.id;
 
-      transaction.set(postRef,
-          {...appPostRequest.toJson(), FirebaseConstants.postIdField: postId});
+      transaction.set(postRef, {
+        ...appPostRequest.toJson(),
+        FirebaseConstants.postIdField: postId,
+      });
+
       if (appPostRequest.attachedImages.isNotEmpty) {
         await _uploadImages(
             appPostRequest.attachedImages, postRef, transaction);
       }
+
       if (appPostRequest.tags.isNotEmpty) {
         await _handleTags(appPostRequest.tags, postId, postRef, transaction);
       }
+
+      final userRef = _firebaseFirestore
+          .collection(FirebaseConstants.usersCollection)
+          .doc(userId);
+
+      transaction.update(userRef, {
+        FirebaseConstants.postsCountField: FieldValue.increment(1),
+      });
+
+      final userPostsRef =
+          userRef.collection(FirebaseConstants.postsKey).doc(postId);
+      transaction.set(userPostsRef, {
+        FirebaseConstants.postIdField: postId,
+      });
     });
   }
 
-  Future<void> _uploadImages(List<File> attachedImages,
-      DocumentReference postRef, Transaction transaction) async {
+  Future<void> _uploadImages(
+    List<File> attachedImages,
+    DocumentReference postRef,
+    Transaction transaction,
+  ) async {
     final imagesCollection =
         postRef.collection(FirebaseConstants.imagesCollection);
 
@@ -53,36 +77,44 @@ class AddPostDataSourceImpl implements AddPostDataSource {
       final uploadTask = storageRef.putFile(imageFile);
       final taskSnapshot = await uploadTask.whenComplete(() => {});
       final downloadUrl = await taskSnapshot.ref.getDownloadURL();
-      transaction.set(imagesCollection.doc(),
-          {FirebaseConstants.imageUrlField: downloadUrl});
+
+      transaction.set(imagesCollection.doc(), {
+        FirebaseConstants.imageUrlField: downloadUrl,
+      });
     }
   }
 
-  Future<void> _handleTags(List<String> tags, String postId,
-      DocumentReference postRef, Transaction transaction) async {
+  Future<void> _handleTags(
+    List<String> tags,
+    String postId,
+    DocumentReference postRef,
+    Transaction transaction,
+  ) async {
     final tagsCollection =
         _firebaseFirestore.collection(FirebaseConstants.tagsCollection);
     final postTagsSubCollection =
         postRef.collection(FirebaseConstants.tagsCollection);
 
     for (final tag in tags) {
-      transaction.set(
-          postTagsSubCollection.doc(tag), {FirebaseConstants.tagField: tag});
+      transaction.set(postTagsSubCollection.doc(tag), {
+        FirebaseConstants.tagField: tag,
+      });
 
       final tagDocRef = tagsCollection.doc(tag);
       final tagDocSnapshot = await tagDocRef.get();
 
       if (tagDocSnapshot.exists) {
         transaction.set(
-            tagDocRef,
-            {
-              FirebaseConstants.postsKey: FieldValue.arrayUnion([postId])
-            },
-            SetOptions(merge: true));
+          tagDocRef,
+          {
+            FirebaseConstants.postsKey: FieldValue.arrayUnion([postId]),
+          },
+          SetOptions(merge: true),
+        );
       } else {
         transaction.set(tagDocRef, {
           FirebaseConstants.tagField: tag,
-          FirebaseConstants.postsKey: [postId]
+          FirebaseConstants.postsKey: [postId],
         });
       }
     }

@@ -4,8 +4,8 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/features/update_profile/presentation/cubit/update_profile_cubit.dart';
 import 'package:tech_tide/features/update_profile/presentation/widgets/bio_field_widget.dart';
 import 'package:tech_tide/features/update_profile/presentation/widgets/name_input_field.dart';
-import 'package:tech_tide/features/update_profile/presentation/widgets/profile_image_widget.dart';
 import 'package:tech_tide/features/update_profile/presentation/widgets/update_button_widget.dart';
+import 'package:tech_tide/features/update_profile/presentation/widgets/update_profile_image_widget.dart';
 
 class UpdateProfileViewBody extends StatefulWidget {
   const UpdateProfileViewBody({super.key});
@@ -42,7 +42,7 @@ class _UpdateProfileViewBodyState extends State<UpdateProfileViewBody> {
           ),
           child: Column(
             children: [
-              const ProfileImageWidget(),
+              const UpdateProfileImageWidget(),
               const SizedBox(height: AppSize.s20),
               NameInputField(
                 nameController: _nameController,

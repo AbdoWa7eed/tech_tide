@@ -76,5 +76,9 @@
   "bioHint" : "Tell us about yourself",
   "update" : "Update",
   "noDataToUpdate" : "There is no data to update",
-  "mustBeAtMax20Chars" : "Must be at max 20 characters"
+  "mustBeAtMax20Chars" : "Must be at max 20 characters",
+  "changeLanguage" : "Change Language",
+  "logout" : "Logout",
+  "savedPosts" : "Saved Posts",
+  "recentPosts" : "Recent Posts"
  }

@@ -63,4 +63,8 @@ abstract class AppStrings {
   static const String bioHint = 'bioHint';
   static const String update = 'update';
   static const String noDataToUpdate = 'noDataToUpdate';
+  static const String changeLanguage = "changeLanguage";
+  static const String logout = "logout";
+  static const String savedPosts = "savedPosts";
+  static const String recentPosts = "recentPosts";
 }

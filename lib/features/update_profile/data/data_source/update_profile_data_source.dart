@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:tech_tide/core/data/data_source/user_data_source.dart';
 import 'package:tech_tide/core/data/models/user/user_response_model.dart';
 import 'package:tech_tide/core/network/firebase_constants.dart';
-import 'package:tech_tide/features/home_layout/data/data_source/user_data_source.dart';
 import 'package:tech_tide/features/update_profile/data/models/update_profile_request.dart';
 
 abstract class UpdateProfileDataSource {
