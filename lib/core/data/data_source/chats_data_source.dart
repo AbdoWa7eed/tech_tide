@@ -10,6 +10,10 @@ abstract class ChatsDataSource {
   Future<Map<String, UserProfile>> getUserProfile(String userId);
   Future<void> sendChatMessage(String chatId, Message message);
   Stream<Chat> getChatMessages(String chatId);
+  Future<void> createChat(String userId, String otherUserId);
+  Future<ChatResponseModel?> getChatById(String chatId);
+  String generateChatId(String userId, String otherUserId);
+  Future<bool> doesChatExist(String chatId);
 }
 
 class ChatsDataSourceImpl implements ChatsDataSource {
@@ -111,5 +115,62 @@ class ChatsDataSourceImpl implements ChatsDataSource {
         .map((snapshot) {
       return Chat.fromJson(snapshot.data() ?? {});
     });
+  }
+
+  @override
+  String generateChatId(String userId, String otherUserId) {
+    List userIds = [userId, otherUserId];
+    userIds.sort();
+    String chatId = userIds.fold("", (id, uid) => "$id$uid");
+    return chatId;
+  }
+
+  @override
+  Future<void> createChat(String userId, String otherUserId) async {
+    final chatId = generateChatId(userId, otherUserId);
+
+    final chatRef = _firebaseFirestore
+        .collection(FirebaseConstants.chatsCollection)
+        .doc(chatId);
+
+    final chatData = {
+      "Participants": [userId, otherUserId],
+      "LastMessage": "",
+      "LastMessageTime": DateTime.now(),
+      "messages": [],
+    };
+
+    await chatRef.set(chatData);
+  }
+
+  @override
+  Future<bool> doesChatExist(String chatId) async {
+    final chatDoc = await _firebaseFirestore
+        .collection(FirebaseConstants.chatsCollection)
+        .doc(chatId)
+        .get();
+
+    return chatDoc.exists;
+  }
+
+  @override
+  Future<ChatResponseModel?> getChatById(String chatId) async {
+    final chatDoc = await _firebaseFirestore
+        .collection(FirebaseConstants.chatsCollection)
+        .doc(chatId)
+        .get();
+
+    if (chatDoc.exists) {
+      final chatData = chatDoc.data();
+      final List<String> participants =
+          List<String>.from(chatData?['Participants'] ?? []);
+
+      final Map<String, UserProfile> userProfileMap =
+          await _getUserProfiles(participants);
+
+      return ChatResponseModel.fromJson(chatData!, userProfileMap);
+    } else {
+      return null;
+    }
   }
 }

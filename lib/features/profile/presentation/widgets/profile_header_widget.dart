@@ -1,5 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tech_tide/core/data/data_source/chats_data_source.dart';
+import 'package:tech_tide/core/data/models/chats/chats_response_model.dart';
+import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
@@ -14,6 +21,10 @@ class ProfileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      late FirebaseAuth _firebaseAuth;
+      late ChatsDataSource _chatsDataSource;
+       _firebaseAuth = FirebaseAuth.instance;
+      _chatsDataSource = ChatsDataSourceImpl(FirebaseFirestore.instance);
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         final state = context.watch<ProfileCubit>().state as ProfileLoaded;
@@ -39,10 +50,40 @@ class ProfileHeaderWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: AppSize.s8),
-                  Text(
-                    state.profileEntity.user.username,
-                    style: StylesManager.semiBold18,
-                  ),
+                  if (true) ...[
+                    Row(
+                      children: [
+                        Text(
+                          state.profileEntity.user.username,
+                          style: StylesManager.semiBold18,
+                        ),
+                        const SizedBox(width: AppSize.s8),
+                        GestureDetector(
+                          onTap: () {   
+                            String chatid = _chatsDataSource.generateChatId(_firebaseAuth.currentUser!.uid, otherUserId);
+                            bool chatExists = _chatsDataSource.doesChatExist(chatid) as bool;
+                            if(!chatExists){
+                             _chatsDataSource.createChat( _firebaseAuth.currentUser!.uid, otherUserId);
+                            }                      
+                            ChatResponseModel chat = _chatsDataSource.getChatById(chatid) as ChatResponseModel;
+                            (context).push('/chat', extra: {
+                              'chatuser': otherUserId,
+                              'currentUserId': _firebaseAuth.currentUser?.uid,
+                              'chat': chat
+                            });
+                          },
+                          child: SvgPicture.asset(
+                            AssetsManager.messageIcon,
+                          ),
+                        ),
+                      ],
+                    )
+                  ] else ...[
+                    Text(
+                      state.profileEntity.user.username,
+                      style: StylesManager.semiBold18,
+                    ),
+                  ],
                   const Divider(
                     color: ColorManager.whiteWith40Opacity,
                   ),
