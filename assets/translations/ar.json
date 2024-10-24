@@ -76,5 +76,9 @@
   "bioHint": "نبذة مختصرة عنك",
   "update" : "تحديث",
   "noDataToUpdate" : "لا يوجد بيانات لتحديثها",
-  "mustBeAtMax20Chars": "يجب أن يكون على الاكثر 20 حروف."
+  "mustBeAtMax20Chars": "يجب أن يكون على الاكثر 20 حروف.",
+  "changeLanguage" : "تغيير اللغة",
+  "logout" : "تسجيل الخروج",
+  "savedPosts" : "المنشورات المحفوظة",
+  "recentPosts" : "المنشورات"
 }

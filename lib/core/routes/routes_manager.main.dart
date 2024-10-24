@@ -12,6 +12,7 @@ abstract class Routes {
   static const String chatRoute = '/chat';
   static const String updateProfile = '/update-profile';
   static const String profileRoute = '/profile';
+  static const String savedPostsRoute = '/search';
 }
 
 abstract class RouteGenerator {
@@ -66,6 +67,8 @@ abstract class RouteGenerator {
                 create: (context) => ServiceLocator.get()..loadHome()),
             BlocProvider<EventsCubit>(
                 create: (context) => ServiceLocator.get()..getEvents()),
+            BlocProvider<ProfileCubit>(
+                create: (context) => ServiceLocator.get()..getProfile()),
           ], child: const HomeLayout());
         },
       ),
@@ -147,6 +150,20 @@ abstract class RouteGenerator {
               ],
               child: const UpdateProfileView(),
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.savedPostsRoute,
+        pageBuilder: (context, state) {
+          return CustomSlideTransition(
+            child: MultiBlocProvider(providers: [
+              BlocProvider<LayoutCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ManagePostCubit>.value(value: ServiceLocator.get()),
+              BlocProvider<ProfileCubit>.value(
+                value: ServiceLocator.get(),
+              ),
+            ], child: const SavedPostsView()),
           );
         },
       ),

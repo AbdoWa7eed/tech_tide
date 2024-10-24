@@ -13,4 +13,5 @@ abstract class AssetsManager {
   static const String userImagePlaceholder = 'assets/images/user.png';
   static const String sendButtonIcon = 'assets/images/sendbutton.png';
   static const String editIcon = 'assets/images/edit.svg';
+  static const String logoutIcon = 'assets/images/logout.svg';
 }

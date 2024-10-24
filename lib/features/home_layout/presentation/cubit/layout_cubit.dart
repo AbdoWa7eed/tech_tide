@@ -22,6 +22,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     emit(ChangeNavBarIndexState());
   }
 
+  void goToProfile() {
+    setIndex(4);
+  }
+
   int get index => _currentIndex;
 
   late UserEntity user;

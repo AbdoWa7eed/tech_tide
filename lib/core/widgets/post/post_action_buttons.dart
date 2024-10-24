@@ -12,36 +12,41 @@ import 'package:tech_tide/features/manage_post/presentation/cubit/manage_post_cu
 
 class PostActionButtons extends StatelessWidget {
   const PostActionButtons({super.key, required this.post});
+
   final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-      LikePostButton(
-        isLiked: isLiked(context),
-        onPressed: () {
-          context.read<ManagePostCubit>().toggleLikePost(post.id);
-        },
-        likes: post.likes.length,
-      ),
-      IconButton(
-        onPressed: () {},
-        icon: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset(
-              AssetsManager.commentIcon,
-              height: AppSize.s22,
-              width: AppSize.s22,
+    return BlocBuilder<ManagePostCubit, ManagePostState>(
+      builder: (context, state) {
+        return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          LikePostButton(
+            isLiked: isLiked(context),
+            onPressed: () {
+              context.read<ManagePostCubit>().toggleLikePost(post.id);
+            },
+            likes: post.likes.length,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SvgPicture.asset(
+                  AssetsManager.commentIcon,
+                  height: AppSize.s22,
+                  width: AppSize.s22,
+                ),
+                const SizedBox(width: AppSize.s12),
+                Text(
+                  "${post.replies} ${AppStrings.replies.translate}",
+                ),
+              ],
             ),
-            const SizedBox(width: AppSize.s12),
-            Text(
-              "${post.replies} ${AppStrings.replies.translate}",
-            ),
-          ],
-        ),
-      ),
-    ]);
+          ),
+        ]);
+      },
+    );
   }
 
   bool isLiked(BuildContext context) {

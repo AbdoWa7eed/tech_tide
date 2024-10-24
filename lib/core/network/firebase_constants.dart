@@ -17,4 +17,7 @@ abstract class FirebaseConstants {
   static const String tagField = "tag";
   static const String dateTimeField = "startDateTime";
   static const String goingField = "going";
+  static const String postsCountField = "postsCount";
+  static const String repliesCountField = "repliesCount";
+  static const String likesCountField = "likesCount";
 }

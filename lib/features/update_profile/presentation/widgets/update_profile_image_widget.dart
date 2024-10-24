@@ -7,8 +7,8 @@ import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/widgets/circled_network_image.dart';
 import 'package:tech_tide/features/update_profile/presentation/cubit/update_profile_cubit.dart';
 
-class ProfileImageWidget extends StatelessWidget {
-  const ProfileImageWidget({super.key});
+class UpdateProfileImageWidget extends StatelessWidget {
+  const UpdateProfileImageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
