@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tech_tide/core/entities/post_entity.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
+import 'package:tech_tide/core/routes/routes_manager.dart';
 import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/post/like_post_button.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
@@ -28,7 +30,9 @@ class PostActionButtons extends StatelessWidget {
             likes: post.likes.length,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(Routes.postDetailsRoute, extra: post.id);
+            },
             icon: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

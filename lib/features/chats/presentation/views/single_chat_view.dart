@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_tide/core/data/data_source/chats_data_source.dart';
@@ -8,12 +9,12 @@ import 'package:tech_tide/core/data/models/chats/message_response_model.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
 import 'package:tech_tide/core/widgets/gradiant_app_bar.dart';
-import 'package:dash_chat_2/dash_chat_2.dart';
 
 class ChatPage extends StatefulWidget {
   final String chatuserID;
   final String currentUserId;
   final ChatResponseModel chat;
+
   const ChatPage(
       {super.key,
       required this.chatuserID,
@@ -65,8 +66,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
         backgroundColor: ColorManager.babyBlue,
         appBar: GradientAppBar(
-          title: userProfileMap?[widget.chatuserID]?.username ??
-              '',
+          title: userProfileMap?[widget.chatuserID]?.username ?? '',
         ),
         body: StreamBuilder(
           stream: _chatsDataSource.getChatMessages(widget.chat.chatId),
@@ -76,31 +76,34 @@ class _ChatPageState extends State<ChatPage> {
             if (chat != null && chat.messages != null) {
               messages = _generateChatMessages(chat.messages!);
             }
-            return DashChat(
-              messageOptions: const MessageOptions(
-                showOtherUsersAvatar: true,
-                showTime: true,
-                currentUserContainerColor: ColorManager.primary,
-                containerColor: ColorManager.babyBlue2,
+            return Directionality(
+              textDirection: TextDirection.ltr,
+              child: DashChat(
+                messageOptions: const MessageOptions(
+                  showOtherUsersAvatar: true,
+                  showTime: true,
+                  currentUserContainerColor: ColorManager.primary,
+                  containerColor: ColorManager.babyBlue2,
+                ),
+                inputOptions: InputOptions(
+                  alwaysShowSend: true,
+                  sendButtonBuilder: (onSend) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorManager.primary,
+                      ),
+                      child: IconButton(
+                        icon: SvgPicture.asset(AssetsManager.sendIcon),
+                        onPressed: onSend,
+                      ),
+                    );
+                  },
+                ),
+                currentUser: currentUser!,
+                onSend: _sendMessage,
+                messages: messages,
               ),
-              inputOptions: InputOptions(
-                alwaysShowSend: true,
-                sendButtonBuilder: (onSend) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: ColorManager.primary,
-                    ),
-                    child: IconButton(
-                      icon: SvgPicture.asset(AssetsManager.sendIcon),
-                      onPressed: onSend,
-                    ),
-                  );
-                },
-              ),
-              currentUser: currentUser!,
-              onSend: _sendMessage,
-              messages: messages,
             );
           },
         ));

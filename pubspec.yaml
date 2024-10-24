@@ -59,6 +59,7 @@ dependencies:
   dash_chat_2: ^0.0.21
   firebase_storage: ^12.3.3
   rxdart: ^0.28.0
+  restart_app: ^1.3.2
 
 dev_dependencies:
   flutter_test:

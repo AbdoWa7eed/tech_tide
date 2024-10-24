@@ -6,6 +6,7 @@ import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/core/widgets/custom_snack_bar.dart';
 import 'package:tech_tide/core/widgets/error_view.dart';
 import 'package:tech_tide/core/widgets/gradiant_app_bar.dart';
+import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 import 'package:tech_tide/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/profile_header_widget.dart';
 import 'package:tech_tide/features/profile/presentation/widgets/profile_view_body.dart';
@@ -18,8 +19,10 @@ class ProfileView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          context.read<ProfileCubit>().getProfile();
+        final cubit = context.read<ProfileCubit>();
+        final layoutCubit = context.read<LayoutCubit>();
+        if (layoutCubit.user.userId != cubit.profileEntity.user.userId) {
+          cubit.getProfile();
         }
       },
       child: Scaffold(

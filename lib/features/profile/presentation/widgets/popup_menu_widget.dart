@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:tech_tide/core/di/di.dart';
 import 'package:tech_tide/core/res/assets_manager.dart';
 import 'package:tech_tide/core/res/color_manager.dart';
+import 'package:tech_tide/core/res/strings_manager.dart';
 import 'package:tech_tide/core/res/styles_manager.dart';
 import 'package:tech_tide/core/res/values_manager.dart';
 import 'package:tech_tide/core/routes/routes_manager.dart';
+import 'package:tech_tide/core/utils/app_preferences.dart';
+import 'package:tech_tide/core/utils/extensions.dart';
 import 'package:tech_tide/features/home_layout/presentation/cubit/layout_cubit.dart';
 import 'package:tech_tide/features/profile/presentation/cubit/profile_cubit.dart';
 
@@ -34,6 +39,11 @@ class PopupMenuWidget extends StatelessWidget {
               context.push(Routes.savedPostsRoute);
               break;
             case 'change_language':
+              ServiceLocator.get<AppPreferences>()
+                  .changeAppLanguage()
+                  .then((value) {
+                Restart.restartApp();
+              });
               break;
           }
         },
@@ -50,22 +60,22 @@ class PopupMenuWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: AppSize.s10),
-                const Text(
-                  'Saved Posts',
+                Text(
+                  AppStrings.savedPosts.translate,
                   style: StylesManager.regular14,
                 ),
               ],
             ),
           ),
-          const PopupMenuItem<String>(
+          PopupMenuItem<String>(
             value: 'change_language',
-            padding: EdgeInsets.symmetric(horizontal: AppPadding.p8),
+            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
             child: Row(
               children: [
-                Icon(Icons.language_outlined),
-                SizedBox(width: AppSize.s10),
+                const Icon(Icons.language_outlined),
+                const SizedBox(width: AppSize.s10),
                 Text(
-                  'Change language',
+                  AppStrings.changeLanguage.translate,
                   style: StylesManager.regular14,
                 ),
               ],
@@ -83,8 +93,8 @@ class PopupMenuWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: AppSize.s10),
-                const Text(
-                  'Logout',
+                Text(
+                  AppStrings.logout.translate,
                   style: StylesManager.regular14,
                 ),
               ],
